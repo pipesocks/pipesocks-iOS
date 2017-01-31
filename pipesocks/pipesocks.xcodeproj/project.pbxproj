@@ -274,6 +274,7 @@
 				PROVISIONING_PROFILE = "d50909c9-1cc1-4b31-918d-db487d85e38e";
 				PROVISIONING_PROFILE_SPECIFIER = pipesocks;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -290,6 +291,7 @@
 				PROVISIONING_PROFILE = "d50909c9-1cc1-4b31-918d-db487d85e38e";
 				PROVISIONING_PROFILE_SPECIFIER = pipesocks;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
