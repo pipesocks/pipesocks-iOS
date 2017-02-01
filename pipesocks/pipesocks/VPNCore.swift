@@ -57,10 +57,11 @@ class VPNCore {
                 completionHandler(false)
                 return
             }
-            let session=self.manager?.connection
             do {
-                try session?.startVPNTunnel()
-            } catch {}
+                try self.manager?.connection.startVPNTunnel()
+            } catch {
+                print(error.localizedDescription)
+            }
             completionHandler(true)
         })
     }
