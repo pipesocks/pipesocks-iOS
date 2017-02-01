@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		752644A21E40C6B000617319 /* origin.png in Resources */ = {isa = PBXBuildFile; fileRef = 752644A11E40C6B000617319 /* origin.png */; };
+		7550ECB41E41CEE300131617 /* VPNCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550ECB31E41CEE300131617 /* VPNCore.swift */; };
 		756C10211E40C3F500C113B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C10201E40C3F500C113B1 /* AppDelegate.swift */; };
 		756C10231E40C3F500C113B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C10221E40C3F500C113B1 /* ViewController.swift */; };
 		756C10261E40C3F500C113B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756C10241E40C3F500C113B1 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		752644A11E40C6B000617319 /* origin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = origin.png; sourceTree = "<group>"; };
+		7550ECB31E41CEE300131617 /* VPNCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNCore.swift; sourceTree = "<group>"; };
 		756C101D1E40C3F500C113B1 /* pipesocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pipesocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		756C10201E40C3F500C113B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		756C10221E40C3F500C113B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				756C10271E40C3F500C113B1 /* Assets.xcassets */,
 				756C10291E40C3F500C113B1 /* LaunchScreen.storyboard */,
 				756C102C1E40C3F500C113B1 /* Info.plist */,
+				7550ECB31E41CEE300131617 /* VPNCore.swift */,
 				752644A11E40C6B000617319 /* origin.png */,
 			);
 			path = pipesocks;
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				756C10231E40C3F500C113B1 /* ViewController.swift in Sources */,
+				7550ECB41E41CEE300131617 /* VPNCore.swift in Sources */,
 				756C10211E40C3F500C113B1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
