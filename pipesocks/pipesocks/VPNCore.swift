@@ -19,7 +19,8 @@ class VPNCore {
             } else {
                 self.manager=NETunnelProviderManager.init()
                 self.manager?.protocolConfiguration=NETunnelProviderProtocol.init()
-                self.manager?.protocolConfiguration?.serverAddress="Pump"
+                self.manager?.localizedDescription="pipesocks Tap"
+                self.manager?.protocolConfiguration?.serverAddress="pipesocks Pump"
                 self.manager?.saveToPreferences(completionHandler: { (err) in
                     if err != nil {
                         self.manager=nil
