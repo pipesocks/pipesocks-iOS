@@ -51,6 +51,7 @@ class VPNCore {
         let ptc:NETunnelProviderProtocol=manager?.protocolConfiguration as! NETunnelProviderProtocol
         ptc.providerConfiguration=["remoteHost":remoteHost, "remotePort":remotePort, "password":password] as [String:Any]
         manager?.protocolConfiguration=ptc
+        manager?.isEnabled=true
         manager?.saveToPreferences(completionHandler: { (err) in
             if err != nil {
                 self.manager=nil
