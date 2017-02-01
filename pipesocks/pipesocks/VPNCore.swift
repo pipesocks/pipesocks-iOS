@@ -12,21 +12,15 @@ class VPNCore {
 
     var manager:NETunnelProviderManager?
 
-    init() {
+    init(completionHandler: @escaping (_:[String:Any]?, _:Bool) -> Void) {
         NETunnelProviderManager.loadAllFromPreferences { (managers, err) in
-            if (managers?.count)!>0 {
-                self.manager=managers?[0]
-            } else {
-                self.manager=NETunnelProviderManager.init()
-                self.manager?.protocolConfiguration=NETunnelProviderProtocol.init()
-                self.manager?.localizedDescription="pipesocks Tap"
-                self.manager?.protocolConfiguration?.serverAddress="pipesocks Pump"
-                self.manager?.saveToPreferences(completionHandler: { (err) in
-                    if err != nil {
-                        self.manager=nil
-                    }
-                })
+            if err != nil||managers?.count==0 {
+                completionHandler(nil, false)
+                return
             }
+            self.manager=managers?[0]
+            let ptc:NETunnelProviderProtocol=self.manager?.protocolConfiguration as! NETunnelProviderProtocol
+            completionHandler(ptc.providerConfiguration, self.started())
         }
     }
 
@@ -38,18 +32,43 @@ class VPNCore {
         if !isValid() {
             return false
         }
-        return (manager?.isEnabled)!
+        return manager?.connection.status==NEVPNStatus.connected
     }
 
-    func start() {
+    func start(remoteHost:String, remotePort:UInt16, password:String, completionHandler:@escaping (_:Bool) -> Void) {
         if started() {
+            completionHandler(true)
             return
         }
+        if !isValid() {
+            manager=NETunnelProviderManager.init()
+            manager?.localizedDescription="pipesocks Tap"
+            let ptc=NETunnelProviderProtocol.init()
+            ptc.serverAddress="pipesocks Pump"
+            ptc.providerBundleIdentifier="tk.yvbbrjdr.pipesocks.Tap"
+            manager?.protocolConfiguration=ptc
+        }
+        let ptc:NETunnelProviderProtocol=manager?.protocolConfiguration as! NETunnelProviderProtocol
+        ptc.providerConfiguration=["remoteHost":remoteHost, "remotePort":remotePort, "password":password] as [String:Any]
+        manager?.protocolConfiguration=ptc
+        manager?.saveToPreferences(completionHandler: { (err) in
+            if err != nil {
+                self.manager=nil
+                completionHandler(false)
+                return
+            }
+            let session=self.manager?.connection
+            do {
+                try session?.startVPNTunnel()
+            } catch {}
+            completionHandler(true)
+        })
     }
 
     func stop() {
         if !started() {
             return
         }
+        self.manager?.connection.stopVPNTunnel()
     }
 }
