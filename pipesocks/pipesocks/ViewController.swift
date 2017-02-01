@@ -16,14 +16,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var startButton: UIButton!
 
-    let ver=Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")!
+    let ver:String=Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")! as! String
     let notFilled=UIAlertController.init(title: "Error", message: "Fill in the blanks!", preferredStyle: UIAlertControllerStyle.alert)
+    let notNum=UIAlertController.init(title: "Error", message: "Please enter a number in Remote Port!", preferredStyle: UIAlertControllerStyle.alert)
     let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+    let settings=UserDefaults.init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         notFilled.addAction(OKButton)
+        notNum.addAction(OKButton)
         titleLabel.text="pipesocks \(ver)"
+        if settings.string(forKey: "remoteHost") != nil {
+            remoteHost.text=settings.string(forKey: "remoteHost")
+            remotePort.text=settings.string(forKey: "remotePort")
+            password.text=settings.string(forKey: "password")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,15 +52,22 @@ class ViewController: UIViewController {
     
     @IBAction func startClicked() {
         if startButton.titleLabel?.text=="Start" {
-            if !(remoteHost.text==""||remotePort.text=="") {
-                startButton.setTitle("Stop", for: UIControlState.normal)
-                remoteHost.isEnabled=false
-                remotePort.isEnabled=false
-                password.isEnabled=false
-                titleLabel.text="Enjoy!"
-            } else {
+            if remoteHost.text==""||remotePort.text=="" {
                 present(notFilled, animated: true, completion: nil)
+                return
             }
+            if UInt16(remotePort.text!)==nil {
+                present(notNum, animated: true, completion: nil)
+                return
+            }
+            settings.set(remoteHost.text, forKey: "remoteHost")
+            settings.set(remotePort.text, forKey: "remotePort")
+            settings.set(password.text, forKey: "password")
+            startButton.setTitle("Stop", for: UIControlState.normal)
+            remoteHost.isEnabled=false
+            remotePort.isEnabled=false
+            password.isEnabled=false
+            titleLabel.text="Enjoy!"
         } else if startButton.titleLabel?.text=="Stop" {
             startButton.setTitle("Start", for: UIControlState.normal)
             remoteHost.isEnabled=true
