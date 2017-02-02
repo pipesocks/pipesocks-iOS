@@ -14,7 +14,33 @@
 		756C10261E40C3F500C113B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756C10241E40C3F500C113B1 /* Main.storyboard */; };
 		756C10281E40C3F500C113B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 756C10271E40C3F500C113B1 /* Assets.xcassets */; };
 		756C102B1E40C3F500C113B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756C10291E40C3F500C113B1 /* LaunchScreen.storyboard */; };
+		75B0E84D1E42DAB80045AE7F /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */; };
+		75B0E8511E42DAB80045AE7F /* Tap.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75B0E8481E42DAB80045AE7F /* Tap.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		75B0E84F1E42DAB80045AE7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 756C10151E40C3F500C113B1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75B0E8471E42DAB80045AE7F;
+			remoteInfo = Tap;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		75B0E8551E42DAB80045AE7F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				75B0E8511E42DAB80045AE7F /* Tap.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		752644A11E40C6B000617319 /* origin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = origin.png; sourceTree = "<group>"; };
@@ -26,10 +52,21 @@
 		756C10271E40C3F500C113B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		756C102A1E40C3F500C113B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		756C102C1E40C3F500C113B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75B0E8481E42DAB80045AE7F /* Tap.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Tap.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		75B0E84B1E42DAB80045AE7F /* Tap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tap.entitlements; sourceTree = "<group>"; };
+		75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
+		75B0E84E1E42DAB80045AE7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		756C101A1E40C3F500C113B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75B0E8451E42DAB80045AE7F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -43,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				756C101F1E40C3F500C113B1 /* pipesocks */,
+				75B0E8491E42DAB80045AE7F /* Tap */,
 				756C101E1E40C3F500C113B1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				756C101D1E40C3F500C113B1 /* pipesocks.app */,
+				75B0E8481E42DAB80045AE7F /* Tap.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +109,24 @@
 			path = pipesocks;
 			sourceTree = "<group>";
 		};
+		75B0E8491E42DAB80045AE7F /* Tap */ = {
+			isa = PBXGroup;
+			children = (
+				75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */,
+				75B0E84A1E42DAB80045AE7F /* Supporting Files */,
+			);
+			path = Tap;
+			sourceTree = "<group>";
+		};
+		75B0E84A1E42DAB80045AE7F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				75B0E84E1E42DAB80045AE7F /* Info.plist */,
+				75B0E84B1E42DAB80045AE7F /* Tap.entitlements */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,15 +137,34 @@
 				756C10191E40C3F500C113B1 /* Sources */,
 				756C101A1E40C3F500C113B1 /* Frameworks */,
 				756C101B1E40C3F500C113B1 /* Resources */,
+				75B0E8551E42DAB80045AE7F /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				75B0E8501E42DAB80045AE7F /* PBXTargetDependency */,
 			);
 			name = pipesocks;
 			productName = pipesocks;
 			productReference = 756C101D1E40C3F500C113B1 /* pipesocks.app */;
 			productType = "com.apple.product-type.application";
+		};
+		75B0E8471E42DAB80045AE7F /* Tap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75B0E8541E42DAB80045AE7F /* Build configuration list for PBXNativeTarget "Tap" */;
+			buildPhases = (
+				75B0E8441E42DAB80045AE7F /* Sources */,
+				75B0E8451E42DAB80045AE7F /* Frameworks */,
+				75B0E8461E42DAB80045AE7F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tap;
+			productName = Tap;
+			productReference = 75B0E8481E42DAB80045AE7F /* Tap.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -104,6 +180,16 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3P29JY455N;
 						ProvisioningStyle = Manual;
+					};
+					75B0E8471E42DAB80045AE7F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 3P29JY455N;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -121,6 +207,7 @@
 			projectRoot = "";
 			targets = (
 				756C101C1E40C3F500C113B1 /* pipesocks */,
+				75B0E8471E42DAB80045AE7F /* Tap */,
 			);
 		};
 /* End PBXProject section */
@@ -137,6 +224,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		75B0E8461E42DAB80045AE7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -150,7 +244,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		75B0E8441E42DAB80045AE7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75B0E84D1E42DAB80045AE7F /* PacketTunnelProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		75B0E8501E42DAB80045AE7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 75B0E8471E42DAB80045AE7F /* Tap */;
+			targetProxy = 75B0E84F1E42DAB80045AE7F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		756C10241E40C3F500C113B1 /* Main.storyboard */ = {
@@ -268,6 +378,7 @@
 		756C10301E40C3F500C113B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3P29JY455N;
 				INFOPLIST_FILE = pipesocks/Info.plist;
@@ -285,6 +396,7 @@
 		756C10311E40C3F500C113B1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3P29JY455N;
 				INFOPLIST_FILE = pipesocks/Info.plist;
@@ -296,6 +408,38 @@
 				PROVISIONING_PROFILE_SPECIFIER = pipesocks;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		75B0E8521E42DAB80045AE7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 3P29JY455N;
+				INFOPLIST_FILE = Tap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tk.yvbbrjdr.pipesocks.Tap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "786a4374-5eeb-4ad3-9606-bd240f2332f0";
+				PROVISIONING_PROFILE_SPECIFIER = "pipesocks Tap";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		75B0E8531E42DAB80045AE7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 3P29JY455N;
+				INFOPLIST_FILE = Tap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tk.yvbbrjdr.pipesocks.Tap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "786a4374-5eeb-4ad3-9606-bd240f2332f0";
+				PROVISIONING_PROFILE_SPECIFIER = "pipesocks Tap";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -319,6 +463,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		75B0E8541E42DAB80045AE7F /* Build configuration list for PBXNativeTarget "Tap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75B0E8521E42DAB80045AE7F /* Debug */,
+				75B0E8531E42DAB80045AE7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
