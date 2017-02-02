@@ -61,9 +61,7 @@ class VPNCore {
             self.manager?.loadFromPreferences(completionHandler: { (err) in
                 do {
                     try self.manager?.connection.startVPNTunnel()
-                } catch {
-                    print(error.localizedDescription)
-                }
+                } catch {}
                 completionHandler(true)
             })
         })

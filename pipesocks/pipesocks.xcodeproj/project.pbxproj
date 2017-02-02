@@ -471,6 +471,7 @@
 				75B0E8531E42DAB80045AE7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
