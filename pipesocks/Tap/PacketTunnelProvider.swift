@@ -18,6 +18,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         settings.iPv4Settings=NEIPv4Settings.init(addresses: ["98.97.12.18"], subnetMasks: ["255.255.255.255"])
         settings.iPv4Settings?.includedRoutes=[NEIPv4Route.default()]
         settings.dnsSettings=NEDNSSettings.init(servers: ["8.8.8.8", "8.8.4.4"])
+        settings.proxySettings=NEProxySettings.init()
         settings.proxySettings?.autoProxyConfigurationEnabled=true
         settings.proxySettings?.proxyAutoConfigurationJavaScript="function FindProxyForURL(url,host){return\"SOCKS 127.0.0.1:\(defaultServerPort)\"}"
         settings.proxySettings?.excludeSimpleHostnames=true
