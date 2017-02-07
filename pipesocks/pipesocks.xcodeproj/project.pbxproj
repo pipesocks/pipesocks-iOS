@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		752644A21E40C6B000617319 /* origin.png in Resources */ = {isa = PBXBuildFile; fileRef = 752644A11E40C6B000617319 /* origin.png */; };
 		7550ECB41E41CEE300131617 /* VPNCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550ECB31E41CEE300131617 /* VPNCore.swift */; };
+		7558458A1E4A1C79001DB787 /* TCPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755845891E4A1C79001DB787 /* TCPServer.swift */; };
+		7558458C1E4A1C8E001DB787 /* TCPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7558458B1E4A1C8E001DB787 /* TCPSocket.swift */; };
+		7558458E1E4A1C98001DB787 /* SecureSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7558458D1E4A1C98001DB787 /* SecureSocket.swift */; };
+		755845901E4A1CBA001DB787 /* Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7558458F1E4A1CBA001DB787 /* Tap.swift */; };
 		756C10211E40C3F500C113B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C10201E40C3F500C113B1 /* AppDelegate.swift */; };
 		756C10231E40C3F500C113B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C10221E40C3F500C113B1 /* ViewController.swift */; };
 		756C10261E40C3F500C113B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756C10241E40C3F500C113B1 /* Main.storyboard */; };
@@ -45,6 +49,10 @@
 /* Begin PBXFileReference section */
 		752644A11E40C6B000617319 /* origin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = origin.png; sourceTree = "<group>"; };
 		7550ECB31E41CEE300131617 /* VPNCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNCore.swift; sourceTree = "<group>"; };
+		755845891E4A1C79001DB787 /* TCPServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCPServer.swift; sourceTree = "<group>"; };
+		7558458B1E4A1C8E001DB787 /* TCPSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCPSocket.swift; sourceTree = "<group>"; };
+		7558458D1E4A1C98001DB787 /* SecureSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureSocket.swift; sourceTree = "<group>"; };
+		7558458F1E4A1CBA001DB787 /* Tap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tap.swift; sourceTree = "<group>"; };
 		756C101D1E40C3F500C113B1 /* pipesocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pipesocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		756C10201E40C3F500C113B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		756C10221E40C3F500C113B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +121,10 @@
 			isa = PBXGroup;
 			children = (
 				75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */,
+				755845891E4A1C79001DB787 /* TCPServer.swift */,
+				7558458B1E4A1C8E001DB787 /* TCPSocket.swift */,
+				7558458D1E4A1C98001DB787 /* SecureSocket.swift */,
+				7558458F1E4A1CBA001DB787 /* Tap.swift */,
 				75B0E84A1E42DAB80045AE7F /* Supporting Files */,
 			);
 			path = Tap;
@@ -248,6 +260,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7558458A1E4A1C79001DB787 /* TCPServer.swift in Sources */,
+				7558458E1E4A1C98001DB787 /* SecureSocket.swift in Sources */,
+				755845901E4A1CBA001DB787 /* Tap.swift in Sources */,
+				7558458C1E4A1C8E001DB787 /* TCPSocket.swift in Sources */,
 				75B0E84D1E42DAB80045AE7F /* PacketTunnelProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
