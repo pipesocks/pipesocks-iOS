@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		750BD76B1E4AE35200D36BCC /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 750BD76A1E4AE35200D36BCC /* Sodium.framework */; };
 		752644A21E40C6B000617319 /* origin.png in Resources */ = {isa = PBXBuildFile; fileRef = 752644A11E40C6B000617319 /* origin.png */; };
 		7550ECB41E41CEE300131617 /* VPNCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550ECB31E41CEE300131617 /* VPNCore.swift */; };
 		7558458A1E4A1C79001DB787 /* TCPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755845891E4A1C79001DB787 /* TCPServer.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		750BD76A1E4AE35200D36BCC /* Sodium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sodium.framework; path = Carthage/Build/iOS/Sodium.framework; sourceTree = "<group>"; };
 		752644A11E40C6B000617319 /* origin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = origin.png; sourceTree = "<group>"; };
 		7550ECB31E41CEE300131617 /* VPNCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNCore.swift; sourceTree = "<group>"; };
 		755845891E4A1C79001DB787 /* TCPServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCPServer.swift; sourceTree = "<group>"; };
@@ -78,18 +80,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				750BD76B1E4AE35200D36BCC /* Sodium.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		750BD7691E4AE35200D36BCC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				750BD76A1E4AE35200D36BCC /* Sodium.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		756C10141E40C3F500C113B1 = {
 			isa = PBXGroup;
 			children = (
 				756C101F1E40C3F500C113B1 /* pipesocks */,
 				75B0E8491E42DAB80045AE7F /* Tap */,
 				756C101E1E40C3F500C113B1 /* Products */,
+				750BD7691E4AE35200D36BCC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,6 +180,7 @@
 				75B0E8441E42DAB80045AE7F /* Sources */,
 				75B0E8451E42DAB80045AE7F /* Frameworks */,
 				75B0E8461E42DAB80045AE7F /* Resources */,
+				750BD7681E4AE06D00D36BCC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -244,6 +257,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		750BD7681E4AE06D00D36BCC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Sodium.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		756C10191E40C3F500C113B1 /* Sources */ = {
@@ -431,6 +461,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 3P29JY455N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Tap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -447,6 +481,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 3P29JY455N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Tap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
