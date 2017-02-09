@@ -25,7 +25,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         settings.tunnelOverheadBytes=150
         settings.mtu=1500
         let config:[String:Any]=(self.protocolConfiguration as! NETunnelProviderProtocol).providerConfiguration!
-        server=TCPServer.init(config: config)
+        server=TCPServer.init(config: config, tunnelProvider: self)
         setTunnelNetworkSettings(settings) { (err) in
             self.server?.start(port: self.defaultServerPort)
             completionHandler(err)
