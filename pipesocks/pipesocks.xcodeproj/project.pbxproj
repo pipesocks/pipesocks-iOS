@@ -19,6 +19,7 @@
 		756C10261E40C3F500C113B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756C10241E40C3F500C113B1 /* Main.storyboard */; };
 		756C10281E40C3F500C113B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 756C10271E40C3F500C113B1 /* Assets.xcassets */; };
 		756C102B1E40C3F500C113B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756C10291E40C3F500C113B1 /* LaunchScreen.storyboard */; };
+		75A8EE1A1E4C571F00F5518D /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A8EE191E4C571F00F5518D /* CocoaAsyncSocket.framework */; };
 		75B0E84D1E42DAB80045AE7F /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */; };
 		75B0E8511E42DAB80045AE7F /* Tap.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75B0E8481E42DAB80045AE7F /* Tap.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		756C10271E40C3F500C113B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		756C102A1E40C3F500C113B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		756C102C1E40C3F500C113B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75A8EE191E4C571F00F5518D /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		75B0E8481E42DAB80045AE7F /* Tap.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Tap.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B0E84B1E42DAB80045AE7F /* Tap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tap.entitlements; sourceTree = "<group>"; };
 		75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				750BD76B1E4AE35200D36BCC /* Sodium.framework in Frameworks */,
+				75A8EE1A1E4C571F00F5518D /* CocoaAsyncSocket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +93,7 @@
 		750BD7691E4AE35200D36BCC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75A8EE191E4C571F00F5518D /* CocoaAsyncSocket.framework */,
 				750BD76A1E4AE35200D36BCC /* Sodium.framework */,
 			);
 			name = Frameworks;
@@ -266,6 +270,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Sodium.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CocoaAsyncSocket.framework",
 			);
 			outputPaths = (
 			);

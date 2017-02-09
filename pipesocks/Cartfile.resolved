@@ -1,1 +1,2 @@
+github "robbiehanson/CocoaAsyncSocket" "7.5.1"
 github "jedisct1/swift-sodium" "0.3"

@@ -1,1 +1,2 @@
 github "jedisct1/swift-sodium"
+github "robbiehanson/CocoaAsyncSocket"
