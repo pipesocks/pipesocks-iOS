@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var remotePort: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var aboutLabel: UILabel!
 
     let ver:String=Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")! as! String
     let notFilled=UIAlertController.init(title: "Error", message: "Fill in the blanks!", preferredStyle: UIAlertControllerStyle.alert)
@@ -29,6 +30,7 @@ class ViewController: UIViewController {
         notNum.addAction(OKButton)
         notValid.addAction(OKButton)
         titleLabel.text="pipesocks \(ver)"
+        aboutLabel.adjustsFontSizeToFitWidth=true
         core=VPNCore.init(completionHandler: { (config, started) in
             if config != nil {
                 self.remoteHost.text=config?["remoteHost"] as! String?
@@ -88,4 +90,3 @@ class ViewController: UIViewController {
         }
     }
 }
-

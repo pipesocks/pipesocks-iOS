@@ -10,6 +10,7 @@
 		750BD76B1E4AE35200D36BCC /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 750BD76A1E4AE35200D36BCC /* Sodium.framework */; };
 		752644A21E40C6B000617319 /* origin.png in Resources */ = {isa = PBXBuildFile; fileRef = 752644A11E40C6B000617319 /* origin.png */; };
 		7550ECB41E41CEE300131617 /* VPNCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550ECB31E41CEE300131617 /* VPNCore.swift */; };
+		7554114F1E4D5384001CD78F /* TCPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7554114E1E4D5384001CD78F /* TCPSocket.swift */; };
 		7558458A1E4A1C79001DB787 /* TCPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755845891E4A1C79001DB787 /* TCPServer.swift */; };
 		7558458E1E4A1C98001DB787 /* SecureSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7558458D1E4A1C98001DB787 /* SecureSocket.swift */; };
 		755845901E4A1CBA001DB787 /* Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7558458F1E4A1CBA001DB787 /* Tap.swift */; };
@@ -51,6 +52,7 @@
 		750BD76A1E4AE35200D36BCC /* Sodium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sodium.framework; path = Carthage/Build/iOS/Sodium.framework; sourceTree = "<group>"; };
 		752644A11E40C6B000617319 /* origin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = origin.png; sourceTree = "<group>"; };
 		7550ECB31E41CEE300131617 /* VPNCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNCore.swift; sourceTree = "<group>"; };
+		7554114E1E4D5384001CD78F /* TCPSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCPSocket.swift; sourceTree = "<group>"; };
 		755845891E4A1C79001DB787 /* TCPServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCPServer.swift; sourceTree = "<group>"; };
 		7558458D1E4A1C98001DB787 /* SecureSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureSocket.swift; sourceTree = "<group>"; };
 		7558458F1E4A1CBA001DB787 /* Tap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tap.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */,
 				755845891E4A1C79001DB787 /* TCPServer.swift */,
+				7554114E1E4D5384001CD78F /* TCPSocket.swift */,
 				7558458D1E4A1C98001DB787 /* SecureSocket.swift */,
 				7558458F1E4A1CBA001DB787 /* Tap.swift */,
 				75B0E84A1E42DAB80045AE7F /* Supporting Files */,
@@ -294,6 +297,7 @@
 			files = (
 				7558458A1E4A1C79001DB787 /* TCPServer.swift in Sources */,
 				7558458E1E4A1C98001DB787 /* SecureSocket.swift in Sources */,
+				7554114F1E4D5384001CD78F /* TCPSocket.swift in Sources */,
 				755845901E4A1CBA001DB787 /* Tap.swift in Sources */,
 				75B0E84D1E42DAB80045AE7F /* PacketTunnelProvider.swift in Sources */,
 			);

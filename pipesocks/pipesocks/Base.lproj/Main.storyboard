@@ -91,10 +91,23 @@
                                     <action selector="startClicked" destination="BYZ-38-t0r" eventType="touchUpInside" id="brs-4D-ju8"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6D-ez-Nuu">
+                                <rect key="frame" x="20" y="405" width="339" height="242"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <string key="text">Copyright (C) 2017  yvbbrjdr
+Icon by Rena
+libsodium by jedisct1
+CocoaAsyncSocket by robbiehanson
+Licensed by BSD 3-Clause</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="aboutLabel" destination="d6D-ez-Nuu" id="S3k-OT-47I"/>
                         <outlet property="password" destination="wQz-gC-eki" id="wsE-S3-Pal"/>
                         <outlet property="remoteHost" destination="b4N-nT-oed" id="RWx-Xk-HPT"/>
                         <outlet property="remotePort" destination="MCY-ZB-xqb" id="h9v-Ix-rAQ"/>

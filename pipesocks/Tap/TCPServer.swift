@@ -17,7 +17,7 @@ class TCPServer:NSObject,GCDAsyncSocketDelegate {
     var password:String=""
     var listenSocket:GCDAsyncSocket?
     var tunnelProvider:NEPacketTunnelProvider?
-    var taps:[Tap]=[]
+    var taps:[UInt16:Tap]=[:]
 
     init(config: [String:Any], tunnelProvider: NEPacketTunnelProvider) {
         super.init()
@@ -34,9 +34,10 @@ class TCPServer:NSObject,GCDAsyncSocketDelegate {
 
     func stop() {
         listenSocket?.disconnect()
+        taps=[:]
     }
 
     func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
-        taps.append(Tap.init(socket: sock, tunnelProvider: tunnelProvider!, remoteHost: remoteHost, remotePort: remotePort, password: password))
+        taps[sock.localPort]=Tap.init(socket: TCPSocket.init(socket: sock), tunnelProvider: tunnelProvider!, remoteHost: remoteHost, remotePort: remotePort, password: password, taps: taps)
     }
 }
