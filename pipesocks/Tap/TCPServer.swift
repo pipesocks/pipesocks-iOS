@@ -38,6 +38,6 @@ class TCPServer:NSObject,GCDAsyncSocketDelegate {
     }
 
     func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
-        taps[sock.localPort]=Tap.init(socket: TCPSocket.init(socket: sock), tunnelProvider: tunnelProvider!, remoteHost: remoteHost, remotePort: remotePort, password: password, taps: taps)
+        taps[sock.localPort]=Tap.init(socket: TCPSocket.init(socket: newSocket), tunnelProvider: tunnelProvider!, remoteHost: remoteHost, remotePort: remotePort, password: password, taps: taps)
     }
 }
