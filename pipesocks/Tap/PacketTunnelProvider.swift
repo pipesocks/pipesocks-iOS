@@ -7,33 +7,44 @@
 //
 
 import NetworkExtension
+import NEKit
 
 class PacketTunnelProvider: NEPacketTunnelProvider {
 
     let defaultServerPort:UInt16=7473
-    var server:TCPServer?
+    var proxyServer:ProxyServer?
 
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
+        let config:[String:Any]=(protocolConfiguration as! NETunnelProviderProtocol).providerConfiguration!
+        let pipesocksAdapterFactory = PipesocksAdapterFactory.init(remoteHost: config["remoteHost"] as! String, remotePort: config["remotePort"] as! UInt16, password: config["password"] as! String)
+        let allRule=AllRule.init(adapterFactory: pipesocksAdapterFactory)
+        let manager=RuleManager(fromRules: [allRule], appendDirect: true)
+        RuleManager.currentManager=manager
+        RawSocketFactory.TunnelProvider=self
         let settings=NEPacketTunnelNetworkSettings.init(tunnelRemoteAddress: "5.20.13.14")
         settings.iPv4Settings=NEIPv4Settings.init(addresses: ["98.97.12.18"], subnetMasks: ["255.255.255.255"])
         settings.iPv4Settings?.includedRoutes=[NEIPv4Route.default()]
         settings.dnsSettings=NEDNSSettings.init(servers: ["8.8.8.8", "8.8.4.4"])
         settings.proxySettings=NEProxySettings.init()
-        settings.proxySettings?.autoProxyConfigurationEnabled=true
-        settings.proxySettings?.proxyAutoConfigurationJavaScript="function FindProxyForURL(url,host){return\"SOCKS 127.0.0.1:\(defaultServerPort)\"}"
+        settings.proxySettings?.httpEnabled=true
+        settings.proxySettings?.httpServer=NEProxyServer.init(address: "127.0.0.1", port: 7473)
+        settings.proxySettings?.httpsEnabled=true
+        settings.proxySettings?.httpsServer=NEProxyServer.init(address: "127.0.0.1", port: 7473)
         settings.proxySettings?.excludeSimpleHostnames=true
+        settings.proxySettings?.matchDomains=[""]
         settings.tunnelOverheadBytes=150
         settings.mtu=1500
-        let config:[String:Any]=(self.protocolConfiguration as! NETunnelProviderProtocol).providerConfiguration!
-        server=TCPServer.init(config: config, tunnelProvider: self)
         setTunnelNetworkSettings(settings) { (err) in
-            self.server?.start(port: self.defaultServerPort)
+            self.proxyServer=GCDHTTPProxyServer(address: IPAddress.init(fromString: "127.0.0.1"), port: Port.init(port: self.defaultServerPort))
+            try! self.proxyServer?.start()
             completionHandler(err)
         }
     }
 
     override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
-        server?.stop()
+        proxyServer?.stop()
+        proxyServer=nil
+        RawSocketFactory.TunnelProvider=nil
         completionHandler()
     }
 }
