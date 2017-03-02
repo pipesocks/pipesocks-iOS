@@ -16,6 +16,7 @@ class PipesocksAdapter: AdapterSocket {
         case idle,
         connecting,
         connected,
+        keyexchanged,
         forwarding,
         disconnected
     }
@@ -28,6 +29,7 @@ class PipesocksAdapter: AdapterSocket {
     var localPubKey:Data?
     var localPriKey:Data?
     var remotePubKey:Data?
+    var recvBuffer:Data=Data.init()
 
     init(remoteHost: String, remotePort: UInt16, password: String) {
         super.init()
@@ -36,7 +38,7 @@ class PipesocksAdapter: AdapterSocket {
         self.password=password
         localPubKey=Data.init(count: Int.init(crypto_box_PUBLICKEYBYTES))
         localPriKey=Data.init(count: Int.init(crypto_box_SECRETKEYBYTES))
-        if (sodium_init() == -1) {
+        if sodium_init() == -1 {
             exit(1)
         }
         localPubKey!.withUnsafeMutableBytes { (localPubKey: UnsafeMutablePointer<UInt8>) -> Void in
@@ -45,7 +47,7 @@ class PipesocksAdapter: AdapterSocket {
             })
         }
         secretKey=password.data(using: String.Encoding.ascii)
-        if (secretKey!.count>=Int.init(crypto_secretbox_KEYBYTES)) {
+        if secretKey!.count>=Int.init(crypto_secretbox_KEYBYTES) {
             secretKey=secretKey!.prefix(Int.init(crypto_secretbox_KEYBYTES)).base
         } else {
             secretKey!.append(Data.init(bytes: Array<UInt8>.init(repeating: UInt8.init(0x98), count: Int.init(crypto_secretbox_KEYBYTES)-secretKey!.count)))
@@ -70,10 +72,36 @@ class PipesocksAdapter: AdapterSocket {
 
     public override func didRead(data: Data, from socket: RawTCPSocketProtocol) {
         super.didRead(data: data, from: socket)
+        recvBuffer.append(data)
+        while recvBuffer.count>=Int.init(crypto_secretbox_MACBYTES)+4+Int.init(crypto_secretbox_NONCEBYTES) {
+            let prefix:Data=secretDecrypt(data: recvBuffer.prefix(Int.init(crypto_secretbox_MACBYTES)+4+Int.init(crypto_secretbox_NONCEBYTES)).base)
+            if prefix.count==0 {
+                return
+            }
+            var l:UInt32=UInt32.init(prefix[0])
+            l=(l<<8)+UInt32.init(prefix[1])
+            l=(l<<8)+UInt32.init(prefix[2])
+            l=(l<<8)+UInt32.init(prefix[3])
+            if recvBuffer.count<Int.init(l) {
+                break
+            }
+            var segment:Data=recvBuffer.prefix(Int.init(l)).suffix(from: Int.init(crypto_secretbox_MACBYTES)+4+Int.init(crypto_secretbox_NONCEBYTES)).base
+            recvBuffer=recvBuffer.suffix(from: Int.init(l)).base
+            if remotePubKey==nil {
+                segment=secretDecrypt(data: segment)
+            } else {
+                segment=publicDecrypt(data: segment)
+            }
+            process(data: segment)
+        }
+        socket.readData()
     }
 
     override open func didWrite(data: Data?, by socket: RawTCPSocketProtocol) {
         super.didWrite(data: data, by: socket)
+        if internalStatus == .forwarding {
+            delegate?.didWrite(data: data, by: self)
+        }
     }
 
     override func write(data: Data) {
@@ -82,6 +110,43 @@ class PipesocksAdapter: AdapterSocket {
 
     func write(rawData: Data) {
         super.write(data: rawData)
+    }
+
+    func process(data: Data) {
+        switch internalStatus {
+        case .connected:
+            if data.count<Int.init(crypto_box_PUBLICKEYBYTES) {
+                disconnect()
+                internalStatus = .disconnected
+                return
+            }
+            remotePubKey=data.suffix(Int.init(crypto_box_PUBLICKEYBYTES)).base
+            let request:NSDictionary=[
+                "host":session.host,
+                "port":session.port,
+                "password":password,
+                "version":Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")! as! String,
+                "protocol":"TCP"
+            ]
+            try! write(data: JSONSerialization.data(withJSONObject: request))
+            internalStatus = .keyexchanged
+            break
+        case .keyexchanged:
+            let response:NSDictionary=try! JSONSerialization.jsonObject(with: data) as! NSDictionary
+            if response["status"]! as! String != "ok" {
+                disconnect()
+                internalStatus = .disconnected
+                return
+            }
+            delegate?.didBecomeReadyToForwardWith(socket: self)
+            internalStatus = .forwarding
+            break
+        case .forwarding:
+            delegate?.didRead(data: data, from: self)
+            break
+        default:
+            break
+        }
     }
 
     func sendEncrypted(data: Data) {
@@ -123,11 +188,12 @@ class PipesocksAdapter: AdapterSocket {
                 })
             })
         }
-        if (result==0) {
+        if result==0 {
             ret.append(nonce)
             return ret
         }
         disconnect()
+        internalStatus = .disconnected
         return Data.init()
     }
 
@@ -146,10 +212,11 @@ class PipesocksAdapter: AdapterSocket {
                 })
             })
         }
-        if (result==0) {
+        if result==0 {
             return ret
         }
         disconnect()
+        internalStatus = .disconnected
         return Data.init()
     }
 
@@ -168,11 +235,12 @@ class PipesocksAdapter: AdapterSocket {
                 })
             })
         }
-        if (result==0) {
+        if result==0 {
             ret.append(nonce)
             return ret
         }
         disconnect()
+        internalStatus = .disconnected
         return Data.init()
     }
 
@@ -189,10 +257,11 @@ class PipesocksAdapter: AdapterSocket {
                 })
             })
         }
-        if (result==0) {
+        if result==0 {
             return ret
         }
         disconnect()
+        internalStatus = .disconnected
         return Data.init()
     }
 }
