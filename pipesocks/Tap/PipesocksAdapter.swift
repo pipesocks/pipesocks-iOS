@@ -48,7 +48,7 @@ class PipesocksAdapter: AdapterSocket {
         }
         secretKey=password.data(using: String.Encoding.ascii)
         if secretKey!.count>=Int.init(crypto_secretbox_KEYBYTES) {
-            secretKey=secretKey!.prefix(Int.init(crypto_secretbox_KEYBYTES)).base
+            secretKey=prefix(data: secretKey!, n: Int.init(crypto_secretbox_KEYBYTES))
         } else {
             secretKey!.append(Data.init(bytes: Array<UInt8>.init(repeating: UInt8.init(0x98), count: Int.init(crypto_secretbox_KEYBYTES)-secretKey!.count)))
         }
@@ -74,7 +74,7 @@ class PipesocksAdapter: AdapterSocket {
         super.didRead(data: data, from: socket)
         recvBuffer.append(data)
         while recvBuffer.count>=Int.init(crypto_secretbox_MACBYTES)+4+Int.init(crypto_secretbox_NONCEBYTES) {
-            let prefix:Data=secretDecrypt(data: recvBuffer.prefix(Int.init(crypto_secretbox_MACBYTES)+4+Int.init(crypto_secretbox_NONCEBYTES)).base)
+            let prefix:Data=secretDecrypt(data: self.prefix(data: recvBuffer, n: Int.init(crypto_secretbox_MACBYTES)+4+Int.init(crypto_secretbox_NONCEBYTES)))
             if prefix.count==0 {
                 return
             }
@@ -85,8 +85,8 @@ class PipesocksAdapter: AdapterSocket {
             if recvBuffer.count<Int.init(l) {
                 break
             }
-            var segment:Data=recvBuffer.prefix(Int.init(l)).suffix(from: Int.init(crypto_secretbox_MACBYTES)+4+Int.init(crypto_secretbox_NONCEBYTES)).base
-            recvBuffer=recvBuffer.suffix(from: Int.init(l)).base
+            var segment:Data=suffix(data: self.prefix(data: recvBuffer, n: Int.init(l)), from: Int.init(crypto_secretbox_MACBYTES)+4+Int.init(crypto_secretbox_NONCEBYTES))
+            recvBuffer=suffix(data: recvBuffer, from: Int.init(l))
             if remotePubKey==nil {
                 segment=secretDecrypt(data: segment)
             } else {
@@ -120,7 +120,7 @@ class PipesocksAdapter: AdapterSocket {
                 internalStatus = .disconnected
                 return
             }
-            remotePubKey=data.suffix(Int.init(crypto_box_PUBLICKEYBYTES)).base
+            remotePubKey=suffix(data: data, n: Int.init(crypto_box_PUBLICKEYBYTES))
             let request:NSDictionary=[
                 "host":session.host,
                 "port":session.port,
@@ -199,8 +199,8 @@ class PipesocksAdapter: AdapterSocket {
 
     func publicDecrypt(data: Data) -> Data {
         var ret:Data=Data.init(count: data.count-Int.init(crypto_box_MACBYTES)-Int.init(crypto_box_NONCEBYTES))
-        let encrypted:Data=data.prefix(data.count-Int.init(crypto_box_NONCEBYTES)).base
-        let nonce:Data=data.suffix(Int.init(crypto_box_NONCEBYTES)).base
+        let encrypted:Data=prefix(data: data, n: data.count-Int.init(crypto_box_NONCEBYTES))
+        let nonce:Data=suffix(data: data, n: Int.init(crypto_box_NONCEBYTES))
         let result:Int32=ret.withUnsafeMutableBytes { (ret: UnsafeMutablePointer<UInt8>) -> Int32 in
             return encrypted.withUnsafeBytes({ (encryptedPtr: UnsafePointer<UInt8>) -> Int32 in
                 return nonce.withUnsafeBytes({ (nonce: UnsafePointer<UInt8>) -> Int32 in
@@ -246,8 +246,8 @@ class PipesocksAdapter: AdapterSocket {
 
     func secretDecrypt(data: Data) -> Data {
         var ret:Data=Data.init(count: data.count-Int.init(crypto_secretbox_MACBYTES)-Int.init(crypto_secretbox_NONCEBYTES))
-        let encrypted:Data=data.prefix(data.count-Int.init(crypto_secretbox_NONCEBYTES)).base
-        let nonce:Data=data.suffix(Int.init(crypto_secretbox_NONCEBYTES)).base
+        let encrypted:Data=prefix(data: data, n: data.count-Int.init(crypto_secretbox_NONCEBYTES))
+        let nonce:Data=suffix(data: data, n: Int.init(crypto_secretbox_NONCEBYTES))
         let result:Int32=ret.withUnsafeMutableBytes { (ret: UnsafeMutablePointer<UInt8>) -> Int32 in
             return encrypted.withUnsafeBytes({ (encryptedPtr: UnsafePointer<UInt8>) -> Int32 in
                 return nonce.withUnsafeBytes({ (nonce: UnsafePointer<UInt8>) -> Int32 in
@@ -263,5 +263,17 @@ class PipesocksAdapter: AdapterSocket {
         disconnect()
         internalStatus = .disconnected
         return Data.init()
+    }
+
+    func prefix(data: Data, n: Int) -> Data {
+        return data.subdata(in: data.startIndex..<data.index(data.startIndex, offsetBy: n))
+    }
+
+    func suffix(data: Data, n: Int) -> Data {
+        return data.subdata(in: data.index(data.endIndex, offsetBy: -n)..<data.endIndex)
+    }
+
+    func suffix(data: Data, from: Int) ->Data {
+        return data.subdata(in: data.index(data.startIndex, offsetBy: from)..<data.endIndex)
     }
 }
