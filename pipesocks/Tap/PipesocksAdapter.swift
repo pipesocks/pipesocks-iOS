@@ -126,7 +126,8 @@ class PipesocksAdapter: AdapterSocket {
                 "port":session.port,
                 "password":password,
                 "version":Version.ver,
-                "protocol":"TCP"
+                "protocol":"TCP",
+                "garbage":String.init(repeating: "f", count: Int.init(randombytes_uniform(900)))
             ]
             try! write(data: JSONSerialization.data(withJSONObject: request))
             internalStatus = .keyexchanged
