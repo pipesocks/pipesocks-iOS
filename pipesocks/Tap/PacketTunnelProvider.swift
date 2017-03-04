@@ -16,8 +16,10 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
         let config:[String:Any]=(protocolConfiguration as! NETunnelProviderProtocol).providerConfiguration!
-        let pipesocksAdapterFactory = PipesocksAdapterFactory.init(remoteHost: config["remoteHost"] as! String, remotePort: config["remotePort"] as! UInt16, password: config["password"] as! String)
-        let allRule=AllRule.init(adapterFactory: pipesocksAdapterFactory)
+        let pipesocksAdapterFactory=PipesocksAdapterFactory.init(remoteHost: config["remoteHost"] as! String, remotePort: config["remotePort"] as! UInt16, password: config["password"] as! String)
+        let speedAdapterFactory=SpeedAdapterFactory.init()
+        speedAdapterFactory.adapterFactories=[(DirectAdapterFactory.init(),1),(pipesocksAdapterFactory,2)]
+        let allRule=AllRule.init(adapterFactory: speedAdapterFactory)
         let manager=RuleManager(fromRules: [allRule], appendDirect: true)
         RuleManager.currentManager=manager
         RawSocketFactory.TunnelProvider=self
@@ -27,9 +29,9 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         settings.dnsSettings=NEDNSSettings.init(servers: ["8.8.8.8", "8.8.4.4"])
         settings.proxySettings=NEProxySettings.init()
         settings.proxySettings?.httpEnabled=true
-        settings.proxySettings?.httpServer=NEProxyServer.init(address: "127.0.0.1", port: 7473)
+        settings.proxySettings?.httpServer=NEProxyServer.init(address: "127.0.0.1", port: Int.init(defaultServerPort))
         settings.proxySettings?.httpsEnabled=true
-        settings.proxySettings?.httpsServer=NEProxyServer.init(address: "127.0.0.1", port: 7473)
+        settings.proxySettings?.httpsServer=NEProxyServer.init(address: "127.0.0.1", port: Int.init(defaultServerPort))
         settings.proxySettings?.excludeSimpleHostnames=true
         settings.proxySettings?.matchDomains=[""]
         settings.tunnelOverheadBytes=150
@@ -46,5 +48,6 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         proxyServer=nil
         RawSocketFactory.TunnelProvider=nil
         completionHandler()
+        exit(0)
     }
 }
