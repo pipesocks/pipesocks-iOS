@@ -125,7 +125,7 @@ class PipesocksAdapter: AdapterSocket {
                 "host":session.host,
                 "port":session.port,
                 "password":password,
-                "version":Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")! as! String,
+                "version":Version.ver,
                 "protocol":"TCP"
             ]
             try! write(data: JSONSerialization.data(withJSONObject: request))

@@ -19,6 +19,8 @@
 		75A475891E6962FA00769779 /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 750A6ACA1E62853400F06D21 /* NEKit.framework */; };
 		75B0E84D1E42DAB80045AE7F /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */; };
 		75B0E8511E42DAB80045AE7F /* Tap.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75B0E8481E42DAB80045AE7F /* Tap.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		75FB850C1E6A40A3009207F5 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FB850B1E6A40A3009207F5 /* Version.swift */; };
+		75FB850D1E6A41A1009207F5 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FB850B1E6A40A3009207F5 /* Version.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,7 @@
 		75B0E84B1E42DAB80045AE7F /* Tap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tap.entitlements; sourceTree = "<group>"; };
 		75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
 		75B0E84E1E42DAB80045AE7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75FB850B1E6A40A3009207F5 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,7 @@
 				756C10291E40C3F500C113B1 /* LaunchScreen.storyboard */,
 				756C102C1E40C3F500C113B1 /* Info.plist */,
 				7550ECB31E41CEE300131617 /* VPNCore.swift */,
+				75FB850B1E6A40A3009207F5 /* Version.swift */,
 				752644A11E40C6B000617319 /* origin.png */,
 			);
 			path = pipesocks;
@@ -285,6 +289,7 @@
 			files = (
 				756C10231E40C3F500C113B1 /* ViewController.swift in Sources */,
 				7550ECB41E41CEE300131617 /* VPNCore.swift in Sources */,
+				75FB850C1E6A40A3009207F5 /* Version.swift in Sources */,
 				756C10211E40C3F500C113B1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +301,7 @@
 				750A6ACD1E6289A200F06D21 /* PipesocksAdapterFactory.swift in Sources */,
 				75B0E84D1E42DAB80045AE7F /* PacketTunnelProvider.swift in Sources */,
 				750A6ACF1E6289BA00F06D21 /* PipesocksAdapter.swift in Sources */,
+				75FB850D1E6A41A1009207F5 /* Version.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
