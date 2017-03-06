@@ -23,8 +23,6 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         RawSocketFactory.TunnelProvider=self
         let settings=NEPacketTunnelNetworkSettings.init(tunnelRemoteAddress: "5.20.13.14")
         settings.iPv4Settings=NEIPv4Settings.init(addresses: ["98.97.12.18"], subnetMasks: ["255.255.255.255"])
-        settings.iPv4Settings?.includedRoutes=[NEIPv4Route.default()]
-        settings.dnsSettings=NEDNSSettings.init(servers: ["8.8.8.8", "8.8.4.4"])
         settings.proxySettings=NEProxySettings.init()
         settings.proxySettings?.httpEnabled=true
         settings.proxySettings?.httpServer=NEProxyServer.init(address: "127.0.0.1", port: Int.init(defaultServerPort))
