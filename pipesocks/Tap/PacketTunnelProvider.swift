@@ -17,9 +17,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
         let config:[String:Any]=(protocolConfiguration as! NETunnelProviderProtocol).providerConfiguration!
         let pipesocksAdapterFactory=PipesocksAdapterFactory.init(remoteHost: config["remoteHost"] as! String, remotePort: config["remotePort"] as! UInt16, password: config["password"] as! String)
-        let speedAdapterFactory=SpeedAdapterFactory.init()
-        speedAdapterFactory.adapterFactories=[(DirectAdapterFactory.init(),1),(pipesocksAdapterFactory,2)]
-        let allRule=AllRule.init(adapterFactory: speedAdapterFactory)
+        let allRule=AllRule.init(adapterFactory: pipesocksAdapterFactory)
         let manager=RuleManager(fromRules: [allRule], appendDirect: true)
         RuleManager.currentManager=manager
         RawSocketFactory.TunnelProvider=self
