@@ -16,6 +16,8 @@
 		756C10261E40C3F500C113B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756C10241E40C3F500C113B1 /* Main.storyboard */; };
 		756C10281E40C3F500C113B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 756C10271E40C3F500C113B1 /* Assets.xcassets */; };
 		756C102B1E40C3F500C113B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756C10291E40C3F500C113B1 /* LaunchScreen.storyboard */; };
+		7586E0421E6FE09500303C26 /* inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 7586E0411E6FE09500303C26 /* inactive.png */; };
+		7586E0441E6FF13800303C26 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7586E0431E6FF13800303C26 /* AboutViewController.swift */; };
 		75A475891E6962FA00769779 /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 750A6ACA1E62853400F06D21 /* NEKit.framework */; };
 		75B0E84D1E42DAB80045AE7F /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */; };
 		75B0E8511E42DAB80045AE7F /* Tap.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75B0E8481E42DAB80045AE7F /* Tap.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -60,6 +62,8 @@
 		756C10271E40C3F500C113B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		756C102A1E40C3F500C113B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		756C102C1E40C3F500C113B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7586E0411E6FE09500303C26 /* inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inactive.png; sourceTree = "<group>"; };
+		7586E0431E6FF13800303C26 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		75B0E8481E42DAB80045AE7F /* Tap.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Tap.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B0E84B1E42DAB80045AE7F /* Tap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tap.entitlements; sourceTree = "<group>"; };
 		75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
@@ -119,12 +123,14 @@
 				756C10201E40C3F500C113B1 /* AppDelegate.swift */,
 				756C10221E40C3F500C113B1 /* ViewController.swift */,
 				756C10241E40C3F500C113B1 /* Main.storyboard */,
+				7586E0431E6FF13800303C26 /* AboutViewController.swift */,
 				756C10271E40C3F500C113B1 /* Assets.xcassets */,
 				756C10291E40C3F500C113B1 /* LaunchScreen.storyboard */,
 				756C102C1E40C3F500C113B1 /* Info.plist */,
 				7550ECB31E41CEE300131617 /* VPNCore.swift */,
 				75FB850B1E6A40A3009207F5 /* Version.swift */,
 				752644A11E40C6B000617319 /* origin.png */,
+				7586E0411E6FE09500303C26 /* inactive.png */,
 			);
 			path = pipesocks;
 			sourceTree = "<group>";
@@ -243,6 +249,7 @@
 				756C102B1E40C3F500C113B1 /* LaunchScreen.storyboard in Resources */,
 				752644A21E40C6B000617319 /* origin.png in Resources */,
 				756C10281E40C3F500C113B1 /* Assets.xcassets in Resources */,
+				7586E0421E6FE09500303C26 /* inactive.png in Resources */,
 				756C10261E40C3F500C113B1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +297,7 @@
 				756C10231E40C3F500C113B1 /* ViewController.swift in Sources */,
 				7550ECB41E41CEE300131617 /* VPNCore.swift in Sources */,
 				75FB850C1E6A40A3009207F5 /* Version.swift in Sources */,
+				7586E0441E6FF13800303C26 /* AboutViewController.swift in Sources */,
 				756C10211E40C3F500C113B1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,22 +18,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AboutViewController: UIViewController {
 
-    @IBOutlet weak var nav: UINavigationItem!
-    @IBOutlet weak var start: UIButton!
+    @IBOutlet weak var aboutText: UITextView!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        nav.title="pipesocks \(Version.ver)"
-        start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
-    }
-
-    @IBAction func startClicked() {
-        if start.backgroundImage(for: UIControlState.normal)==#imageLiteral(resourceName: "inactive.png") {
-            start.setBackgroundImage(#imageLiteral(resourceName: "origin.png"), for: UIControlState.normal)
-        } else {
-            start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
-        }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        aboutText.setContentOffset(CGPoint.zero, animated: false)
     }
 }
