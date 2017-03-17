@@ -16,26 +16,14 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Foundation
-import NEKit
+import UIKit
 
-class PipesocksAdapterFactory: AdapterFactory {
+class AboutViewController: UIViewController {
 
-    var remoteHost:String=""
-    var remotePort:UInt16=0
-    var password:String=""
-    var enableIPv6:Bool=false
+    @IBOutlet weak var aboutText: UITextView!
 
-    init(remoteHost: String, remotePort: UInt16, password: String, enableIPv6: Bool) {
-        self.remoteHost=remoteHost
-        self.remotePort=remotePort
-        self.password=password
-        self.enableIPv6=enableIPv6
-    }
-
-    override func getAdapterFor(session: ConnectSession) -> AdapterSocket {
-        let adapter=PipesocksAdapter.init(remoteHost: remoteHost, remotePort: remotePort, password: password, enableIPv6: enableIPv6)
-        adapter.socket=RawSocketFactory.getRawSocket()
-        return adapter
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        aboutText.setContentOffset(CGPoint.zero, animated: false)
     }
 }
