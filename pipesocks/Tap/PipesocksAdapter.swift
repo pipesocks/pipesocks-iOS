@@ -35,17 +35,19 @@ class PipesocksAdapter: AdapterSocket {
     var remoteHost:String=""
     var remotePort:UInt16=0
     var password:String=""
+    var enableIPv6:Bool=false
     var secretKey:Data?
     var localPubKey:Data?
     var localPriKey:Data?
     var remotePubKey:Data?
     var recvBuffer:Data=Data.init()
 
-    init(remoteHost: String, remotePort: UInt16, password: String) {
+    init(remoteHost: String, remotePort: UInt16, password: String, enableIPv6: Bool) {
         super.init()
         self.remoteHost=remoteHost
         self.remotePort=remotePort
         self.password=password
+        self.enableIPv6=enableIPv6
         localPubKey=Data.init(count: Int.init(crypto_box_PUBLICKEYBYTES))
         localPriKey=Data.init(count: Int.init(crypto_box_SECRETKEYBYTES))
         if sodium_init() == -1 {
@@ -70,7 +72,12 @@ class PipesocksAdapter: AdapterSocket {
             return
         }
         internalStatus = .connecting
-        try! socket.connectTo(host: remoteHost, port: Int.init(remotePort), enableTLS: false, tlsSettings: nil)
+        if session.isIPv6() && !enableIPv6 {
+            disconnect()
+            internalStatus = .disconnected
+        } else {
+            try! socket.connectTo(host: remoteHost, port: Int.init(remotePort), enableTLS: false, tlsSettings: nil)
+        }
     }
 
     public override func didConnectWith(socket: RawTCPSocketProtocol) {

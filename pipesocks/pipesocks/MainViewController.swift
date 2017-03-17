@@ -17,23 +17,43 @@
  */
 
 import UIKit
+import NetworkExtension
 
 class MainViewController: UIViewController {
 
     @IBOutlet weak var nav: UINavigationItem!
     @IBOutlet weak var start: UIButton!
+    @IBOutlet weak var settings: UIBarButtonItem!
+    let notValid=UIAlertController.init(title: "Error", message: "Set the settings before you start pipesocks!", preferredStyle: UIAlertControllerStyle.alert)
+    let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+    var core:VPNCore?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         nav.title="pipesocks \(Version.ver)"
-        start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
+        notValid.addAction(OKButton)
+        self.start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
+        core=VPNCore.init(completionHandler: { 
+            if self.core?.status()==NEVPNStatus.connected||self.core?.status()==NEVPNStatus.connecting {
+                self.start.setBackgroundImage(#imageLiteral(resourceName: "origin.png"), for: UIControlState.normal)
+                self.settings.isEnabled=false
+            }
+        })
     }
 
     @IBAction func startClicked() {
-        if start.backgroundImage(for: UIControlState.normal)==#imageLiteral(resourceName: "inactive.png") {
-            start.setBackgroundImage(#imageLiteral(resourceName: "origin.png"), for: UIControlState.normal)
-        } else {
-            start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
-        }
+        core=VPNCore.init(completionHandler: { 
+            if self.core?.status()==NEVPNStatus.connected {
+                self.core?.stop()
+                self.start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
+                self.settings.isEnabled=true
+            } else if self.core?.status()==NEVPNStatus.disconnected {
+                self.core?.start()
+                self.start.setBackgroundImage(#imageLiteral(resourceName: "origin.png"), for: UIControlState.normal)
+                self.settings.isEnabled=false
+            } else if self.core?.status()==NEVPNStatus.invalid {
+                self.present(self.notValid, animated: true, completion: nil)
+            }
+        })
     }
 }

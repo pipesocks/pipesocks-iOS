@@ -17,6 +17,7 @@
  */
 
 import UIKit
+import NetworkExtension
 
 class SettingsViewController: UITableViewController {
 
@@ -25,9 +26,32 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var autoMode: UISwitch!
     @IBOutlet weak var enableIPv6: UISwitch!
+    let notFilled=UIAlertController.init(title: "Error", message: "Fill in the blanks!", preferredStyle: UIAlertControllerStyle.alert)
+    let notNum=UIAlertController.init(title: "Error", message: "Please enter a number in Remote Port!", preferredStyle: UIAlertControllerStyle.alert)
+    let notValid=UIAlertController.init(title: "Error", message: "Permission denied!\nPlease allow the VPN configuration!", preferredStyle: UIAlertControllerStyle.alert)
+    let valid=UIAlertController.init(title: "Success", message: "Settings successfully saved!", preferredStyle: UIAlertControllerStyle.alert)
+    let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+    var core:VPNCore?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        notFilled.addAction(OKButton)
+        notNum.addAction(OKButton)
+        notValid.addAction(OKButton)
+        valid.addAction(OKButton)
+        remotePort.text="7473"
+        autoMode.isOn=true
+        enableIPv6.isOn=false
+        core=VPNCore.init(completionHandler: {
+            if self.core?.status() != NEVPNStatus.invalid {
+                let config:[String:Any]=(self.core?.getConfig())!
+                self.remoteHost.text=config["remoteHost"] as! String?
+                self.remotePort.text="\(config["remotePort"] as! UInt16)"
+                self.password.text=config["password"] as! String?
+                self.autoMode.isOn=config["autoMode"] as! Bool
+                self.enableIPv6.isOn=config["enableIPv6"] as! Bool
+            }
+        })
     }
 
     @IBAction func remoteHostDone() {
@@ -43,6 +67,27 @@ class SettingsViewController: UITableViewController {
     }
 
     @IBAction func saveClicked() {
-        
+        if remoteHost.text!.isEmpty||remotePort.text!.isEmpty {
+            present(notFilled, animated: true, completion: nil)
+            return
+        }
+        if UInt16.init(remotePort.text!)==nil {
+            present(notNum, animated: true, completion: nil)
+            return
+        }
+        let config:[String:Any]=[
+            "remoteHost":remoteHost.text!,
+            "remotePort":UInt16.init(remotePort.text!)!,
+            "password":password.text!,
+            "autoMode":autoMode.isOn,
+            "enableIPv6":enableIPv6.isOn
+        ]
+        core?.setConfig(config: config, completionHandler: { (success) in
+            if success {
+                self.present(self.valid, animated: true, completion: nil)
+            } else {
+                self.present(self.notValid, animated: true, completion: nil)
+            }
+        })
     }
 }

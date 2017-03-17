@@ -24,15 +24,17 @@ class PipesocksAdapterFactory: AdapterFactory {
     var remoteHost:String=""
     var remotePort:UInt16=0
     var password:String=""
+    var enableIPv6:Bool=false
 
-    init(remoteHost: String, remotePort: UInt16, password: String) {
+    init(remoteHost: String, remotePort: UInt16, password: String, enableIPv6: Bool) {
         self.remoteHost=remoteHost
         self.remotePort=remotePort
         self.password=password
+        self.enableIPv6=enableIPv6
     }
 
     override func getAdapterFor(session: ConnectSession) -> AdapterSocket {
-        let adapter=PipesocksAdapter.init(remoteHost: remoteHost, remotePort: remotePort, password: password)
+        let adapter=PipesocksAdapter.init(remoteHost: remoteHost, remotePort: remotePort, password: password, enableIPv6: enableIPv6)
         adapter.socket=RawSocketFactory.getRawSocket()
         return adapter
     }
