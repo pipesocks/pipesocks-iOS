@@ -18,22 +18,31 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SettingsViewController: UITableViewController {
 
-    @IBOutlet weak var nav: UINavigationItem!
-    @IBOutlet weak var start: UIButton!
+    @IBOutlet weak var remoteHost: UITextField!
+    @IBOutlet weak var remotePort: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var autoMode: UISwitch!
+    @IBOutlet weak var enableIPv6: UISwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        nav.title="pipesocks \(Version.ver)"
-        start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
     }
 
-    @IBAction func startClicked() {
-        if start.backgroundImage(for: UIControlState.normal)==#imageLiteral(resourceName: "inactive.png") {
-            start.setBackgroundImage(#imageLiteral(resourceName: "origin.png"), for: UIControlState.normal)
-        } else {
-            start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
-        }
+    @IBAction func remoteHostDone() {
+        remotePort.becomeFirstResponder()
+    }
+
+    @IBAction func remotePortDone() {
+        password.becomeFirstResponder()
+    }
+
+    @IBAction func passwordDone() {
+        password.resignFirstResponder()
+    }
+
+    @IBAction func saveClicked() {
+        
     }
 }
