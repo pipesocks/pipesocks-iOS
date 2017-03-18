@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        nav.title="pipesocks \(Version.ver)"
+        nav.title="pipesocks \(Version.getHighestVersion())"
         OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default) { (action) in
             self.performSegue(withIdentifier: "ShowSettings", sender: self)
         }

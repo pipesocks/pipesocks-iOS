@@ -20,5 +20,13 @@ import Foundation
 
 class Version {
 
-    static let ver:String="2.3"
+    static let ver:[String]=["2.3"]
+
+    static func getHighestVersion() -> String {
+        return ver.first!
+    }
+
+    static func getLowestVersion() -> String {
+        return ver.last!
+    }
 }

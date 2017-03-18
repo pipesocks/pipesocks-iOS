@@ -142,7 +142,7 @@ class PipesocksAdapter: AdapterSocket {
                 "host":session.host,
                 "port":session.port,
                 "password":password,
-                "version":Version.ver,
+                "version":Version.getLowestVersion(),
                 "protocol":"TCP",
                 "garbage":String.init(repeating: "f", count: Int.init(randombytes_uniform(900)))
             ]
