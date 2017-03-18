@@ -39,17 +39,15 @@ class VPNCore {
     }
 
     func start() {
-        if status()==NEVPNStatus.connected||status()==NEVPNStatus.connecting {
-            return
-        } else {
-            try! self.manager?.connection.startVPNTunnel()
+        if status()==NEVPNStatus.disconnected {
+            setConfig(config: getConfig()!, completionHandler: { (success) in
+                try! self.manager?.connection.startVPNTunnel()
+            })
         }
     }
 
     func stop() {
-        if status()==NEVPNStatus.disconnected||status()==NEVPNStatus.disconnecting {
-            return
-        } else {
+        if status()==NEVPNStatus.connected {
             self.manager?.connection.stopVPNTunnel()
         }
     }
