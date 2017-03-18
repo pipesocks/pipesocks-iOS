@@ -32,28 +32,65 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         nav.title="pipesocks \(Version.ver)"
         notValid.addAction(OKButton)
-        self.start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
-        core=VPNCore.init(completionHandler: { 
-            if self.core?.status()==NEVPNStatus.connected||self.core?.status()==NEVPNStatus.connecting {
-                self.start.setBackgroundImage(#imageLiteral(resourceName: "origin.png"), for: UIControlState.normal)
-                self.settings.isEnabled=false
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        core=VPNCore.init(completionHandler: {
+            self.stateChanged()
+            if self.core!.status() != .invalid {
+                NotificationCenter.default.addObserver(forName: NSNotification.Name.NEVPNStatusDidChange, object: self.core?.manager?.connection, queue: OperationQueue.main, using: { (notification) in
+                    self.stateChanged()
+                })
             }
         })
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if core!.status() != .invalid {
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NEVPNStatusDidChange, object: core?.manager?.connection)
+        }
+    }
+
+    func stateChanged() {
+        switch core!.status() {
+            case .connected:
+                start.setBackgroundImage(#imageLiteral(resourceName: "origin.png"), for: UIControlState.normal)
+                start.isEnabled=true
+                settings.isEnabled=false
+                break
+            case .connecting, .reasserting:
+                start.setBackgroundImage(#imageLiteral(resourceName: "origin.png"), for: UIControlState.normal)
+                start.isEnabled=false
+                settings.isEnabled=false
+                break
+            case .invalid, .disconnected:
+                start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
+                start.isEnabled=true
+                settings.isEnabled=true
+                break
+            case .disconnecting:
+                start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
+                start.isEnabled=false
+                settings.isEnabled=false
+                break
+        }
+    }
+
     @IBAction func startClicked() {
-        core=VPNCore.init(completionHandler: { 
-            if self.core?.status()==NEVPNStatus.connected {
-                self.core?.stop()
-                self.start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
-                self.settings.isEnabled=true
-            } else if self.core?.status()==NEVPNStatus.disconnected {
-                self.core?.start()
-                self.start.setBackgroundImage(#imageLiteral(resourceName: "origin.png"), for: UIControlState.normal)
-                self.settings.isEnabled=false
-            } else if self.core?.status()==NEVPNStatus.invalid {
-                self.present(self.notValid, animated: true, completion: nil)
-            }
-        })
+        switch core!.status() {
+            case .connected:
+                core?.stop()
+                break
+            case .disconnected:
+                core?.start()
+                break
+            case .invalid:
+                present(notValid, animated: true, completion: nil)
+                break
+            default:
+                break
+        }
     }
 }
