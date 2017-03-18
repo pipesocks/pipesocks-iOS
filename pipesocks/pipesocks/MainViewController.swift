@@ -25,13 +25,16 @@ class MainViewController: UIViewController {
     @IBOutlet weak var start: UIButton!
     @IBOutlet weak var settings: UIBarButtonItem!
     let notValid=UIAlertController.init(title: "Error", message: "Set the settings before you start pipesocks!", preferredStyle: UIAlertControllerStyle.alert)
-    let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+    var OKButton:UIAlertAction?
     var core:VPNCore?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         nav.title="pipesocks \(Version.ver)"
-        notValid.addAction(OKButton)
+        OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default) { (action) in
+            self.performSegue(withIdentifier: "ShowSettings", sender: self)
+        }
+        notValid.addAction(OKButton!)
     }
 
     override func viewWillAppear(_ animated: Bool) {

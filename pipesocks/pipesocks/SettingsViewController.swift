@@ -29,7 +29,6 @@ class SettingsViewController: UITableViewController {
     let notFilled=UIAlertController.init(title: "Error", message: "Fill in the blanks!", preferredStyle: UIAlertControllerStyle.alert)
     let notNum=UIAlertController.init(title: "Error", message: "Please enter a number in Remote Port!", preferredStyle: UIAlertControllerStyle.alert)
     let notValid=UIAlertController.init(title: "Error", message: "Permission denied!\nPlease allow the VPN configuration!", preferredStyle: UIAlertControllerStyle.alert)
-    let valid=UIAlertController.init(title: "Success", message: "Settings successfully saved!", preferredStyle: UIAlertControllerStyle.alert)
     let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
     var core:VPNCore?
 
@@ -38,7 +37,6 @@ class SettingsViewController: UITableViewController {
         notFilled.addAction(OKButton)
         notNum.addAction(OKButton)
         notValid.addAction(OKButton)
-        valid.addAction(OKButton)
         remotePort.text="7473"
         autoMode.isOn=true
         enableIPv6.isOn=false
@@ -84,7 +82,7 @@ class SettingsViewController: UITableViewController {
         ]
         core?.setConfig(config: config, completionHandler: { (success) in
             if success {
-                self.present(self.valid, animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
             } else {
                 self.present(self.notValid, animated: true, completion: nil)
             }
