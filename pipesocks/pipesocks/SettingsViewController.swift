@@ -88,4 +88,8 @@ class SettingsViewController: UITableViewController {
             }
         })
     }
+
+    @IBAction func QRCodeClicked() {
+        performSegue(withIdentifier: "ShowQRCode", sender: self)
+    }
 }

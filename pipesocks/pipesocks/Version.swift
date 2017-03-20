@@ -23,10 +23,10 @@ class Version {
     static let ver:[String]=["2.3"]
 
     static func getHighestVersion() -> String {
-        return ver.first!
+        return ver.last!
     }
 
     static func getLowestVersion() -> String {
-        return ver.last!
+        return ver.first!
     }
 }
