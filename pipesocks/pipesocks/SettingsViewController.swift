@@ -26,17 +26,11 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var autoMode: UISwitch!
     @IBOutlet weak var enableIPv6: UISwitch!
-    let notFilled=UIAlertController.init(title: "Error", message: "Fill in the blanks!", preferredStyle: UIAlertControllerStyle.alert)
-    let notNum=UIAlertController.init(title: "Error", message: "Please enter a number in Remote Port!", preferredStyle: UIAlertControllerStyle.alert)
-    let notValid=UIAlertController.init(title: "Error", message: "Permission denied!\nPlease allow the VPN configuration!", preferredStyle: UIAlertControllerStyle.alert)
-    let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
     var core:VPNCore?
+    static var url:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        notFilled.addAction(OKButton)
-        notNum.addAction(OKButton)
-        notValid.addAction(OKButton)
         remotePort.text="7473"
         autoMode.isOn=true
         enableIPv6.isOn=false
@@ -50,6 +44,29 @@ class SettingsViewController: UITableViewController {
                 self.enableIPv6.isOn=config["enableIPv6"] as! Bool
             }
         })
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let url=SettingsViewController.url {
+            var ok:Bool=false
+            if String.init(url.characters.prefix(12))=="pipesocks://" {
+                let params=url.characters.split(separator: Character.init("|"), maxSplits: 2, omittingEmptySubsequences: false)
+                if params.count==3 {
+                    remoteHost.text=String.init(params[0].suffix(params[0].count-12))
+                    remotePort.text=String.init(params[1])
+                    password.text=String.init(params[2])
+                    ok=true
+                }
+            }
+            if !ok {
+                let notValid=UIAlertController.init(title: "Error", message: "The QR Code is invalid!", preferredStyle: UIAlertControllerStyle.alert)
+                let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+                notValid.addAction(OKButton)
+                present(notValid, animated: true, completion: nil)
+            }
+            SettingsViewController.url=nil
+        }
     }
 
     @IBAction func remoteHostDone() {
@@ -66,10 +83,16 @@ class SettingsViewController: UITableViewController {
 
     @IBAction func saveClicked() {
         if remoteHost.text!.isEmpty||remotePort.text!.isEmpty {
+            let notFilled=UIAlertController.init(title: "Error", message: "Fill in the blanks!", preferredStyle: UIAlertControllerStyle.alert)
+            let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+            notFilled.addAction(OKButton)
             present(notFilled, animated: true, completion: nil)
             return
         }
         if UInt16.init(remotePort.text!)==nil {
+            let notNum=UIAlertController.init(title: "Error", message: "Please enter a number in Remote Port!", preferredStyle: UIAlertControllerStyle.alert)
+            let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+            notNum.addAction(OKButton)
             present(notNum, animated: true, completion: nil)
             return
         }
@@ -84,12 +107,16 @@ class SettingsViewController: UITableViewController {
             if success {
                 self.navigationController?.popViewController(animated: true)
             } else {
-                self.present(self.notValid, animated: true, completion: nil)
+                let notValid=UIAlertController.init(title: "Error", message: "Permission denied!\nPlease allow the VPN configuration!", preferredStyle: UIAlertControllerStyle.alert)
+                let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+                notValid.addAction(OKButton)
+                self.present(notValid, animated: true, completion: nil)
             }
         })
     }
 
     @IBAction func QRCodeClicked() {
+        EncodeViewController.url="pipesocks://\(remoteHost.text!)|\(remotePort.text!)|\(password.text!)"
         performSegue(withIdentifier: "ShowQRCode", sender: self)
     }
 }

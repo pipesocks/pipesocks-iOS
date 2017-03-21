@@ -24,21 +24,12 @@ class MainViewController: UIViewController {
     @IBOutlet weak var nav: UINavigationItem!
     @IBOutlet weak var start: UIButton!
     @IBOutlet weak var settings: UIBarButtonItem!
-    let notValid=UIAlertController.init(title: "Error", message: "Set the settings before you start pipesocks!", preferredStyle: UIAlertControllerStyle.alert)
-    var OKButton:UIAlertAction?
+    
     var core:VPNCore?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        nav.title="pipesocks \(Version.getHighestVersion())"
-        OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default) { (action) in
-            self.performSegue(withIdentifier: "ShowSettings", sender: self)
-        }
-        notValid.addAction(OKButton!)
-    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        nav.title="pipesocks \(Version.getHighestVersion())"
         core=VPNCore.init(completionHandler: {
             self.stateChanged()
             if self.core!.status() != .invalid {
@@ -90,6 +81,11 @@ class MainViewController: UIViewController {
                 core?.start()
                 break
             case .invalid:
+                let notValid=UIAlertController.init(title: "Error", message: "Set the settings before you start pipesocks!", preferredStyle: UIAlertControllerStyle.alert)
+                let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default) { (action) in
+                    self.performSegue(withIdentifier: "ShowSettings", sender: self)
+                }
+                notValid.addAction(OKButton)
                 present(notValid, animated: true, completion: nil)
                 break
             default:

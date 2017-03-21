@@ -22,6 +22,8 @@
 		7586E0421E6FE09500303C26 /* inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 7586E0411E6FE09500303C26 /* inactive.png */; };
 		7586E0441E6FF13800303C26 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7586E0431E6FF13800303C26 /* AboutViewController.swift */; };
 		75A475891E6962FA00769779 /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 750A6ACA1E62853400F06D21 /* NEKit.framework */; };
+		75A6FC221E80BBCC00DB9B18 /* EncodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A6FC211E80BBCC00DB9B18 /* EncodeViewController.swift */; };
+		75A6FC241E80BBFD00DB9B18 /* DecodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A6FC231E80BBFD00DB9B18 /* DecodeViewController.swift */; };
 		75B0E84D1E42DAB80045AE7F /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */; };
 		75B0E8511E42DAB80045AE7F /* Tap.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75B0E8481E42DAB80045AE7F /* Tap.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		75FB850C1E6A40A3009207F5 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FB850B1E6A40A3009207F5 /* Version.swift */; };
@@ -70,6 +72,8 @@
 		756C102C1E40C3F500C113B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7586E0411E6FE09500303C26 /* inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inactive.png; sourceTree = "<group>"; };
 		7586E0431E6FF13800303C26 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		75A6FC211E80BBCC00DB9B18 /* EncodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodeViewController.swift; sourceTree = "<group>"; };
+		75A6FC231E80BBFD00DB9B18 /* DecodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodeViewController.swift; sourceTree = "<group>"; };
 		75B0E8481E42DAB80045AE7F /* Tap.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Tap.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B0E84B1E42DAB80045AE7F /* Tap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tap.entitlements; sourceTree = "<group>"; };
 		75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 				756C10221E40C3F500C113B1 /* MainViewController.swift */,
 				7586E0431E6FF13800303C26 /* AboutViewController.swift */,
 				751D8FEB1E7B8855000BB38A /* SettingsViewController.swift */,
+				75A6FC211E80BBCC00DB9B18 /* EncodeViewController.swift */,
+				75A6FC231E80BBFD00DB9B18 /* DecodeViewController.swift */,
 				756C10241E40C3F500C113B1 /* Main.storyboard */,
 				756C10271E40C3F500C113B1 /* Assets.xcassets */,
 				756C10291E40C3F500C113B1 /* LaunchScreen.storyboard */,
@@ -305,12 +311,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75A6FC241E80BBFD00DB9B18 /* DecodeViewController.swift in Sources */,
 				756C10231E40C3F500C113B1 /* MainViewController.swift in Sources */,
 				7550ECB41E41CEE300131617 /* VPNCore.swift in Sources */,
 				75FB850C1E6A40A3009207F5 /* Version.swift in Sources */,
 				7586E0441E6FF13800303C26 /* AboutViewController.swift in Sources */,
 				756C10211E40C3F500C113B1 /* AppDelegate.swift in Sources */,
 				751D8FEC1E7B8855000BB38A /* SettingsViewController.swift in Sources */,
+				75A6FC221E80BBCC00DB9B18 /* EncodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
