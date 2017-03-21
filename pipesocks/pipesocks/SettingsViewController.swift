@@ -29,8 +29,8 @@ class SettingsViewController: UITableViewController {
     var core:VPNCore?
     static var url:String?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         remotePort.text="7473"
         autoMode.isOn=true
         enableIPv6.isOn=false
@@ -44,23 +44,20 @@ class SettingsViewController: UITableViewController {
                 self.enableIPv6.isOn=config["enableIPv6"] as! Bool
             }
         })
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let url=SettingsViewController.url {
+        if var url=SettingsViewController.url {
             var ok:Bool=false
             if String.init(url.characters.prefix(12))=="pipesocks://" {
+                url=urlSafeBase64Decode(str: String.init(url.characters.suffix(url.characters.count-12)))
                 let params=url.characters.split(separator: Character.init("|"), maxSplits: 2, omittingEmptySubsequences: false)
                 if params.count==3 {
-                    remoteHost.text=String.init(params[0].suffix(params[0].count-12))
+                    remoteHost.text=String.init(params[0])
                     remotePort.text=String.init(params[1])
                     password.text=String.init(params[2])
                     ok=true
                 }
             }
             if !ok {
-                let notValid=UIAlertController.init(title: "Error", message: "The QR Code is invalid!", preferredStyle: UIAlertControllerStyle.alert)
+                let notValid=UIAlertController.init(title: "Error", message: "The URL or QR Code is invalid!", preferredStyle: UIAlertControllerStyle.alert)
                 let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
                 notValid.addAction(OKButton)
                 present(notValid, animated: true, completion: nil)
@@ -116,7 +113,15 @@ class SettingsViewController: UITableViewController {
     }
 
     @IBAction func QRCodeClicked() {
-        EncodeViewController.url="pipesocks://\(remoteHost.text!)|\(remotePort.text!)|\(password.text!)"
+        EncodeViewController.url="pipesocks://\(urlSafeBase64Encode(str: "\(remoteHost.text!)|\(remotePort.text!)|\(password.text!)"))"
         performSegue(withIdentifier: "ShowQRCode", sender: self)
+    }
+
+    func urlSafeBase64Encode(str:String) -> String {
+        return str.data(using: String.Encoding.ascii)!.base64EncodedString().replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "+", with: "-")
+    }
+
+    func urlSafeBase64Decode(str:String) -> String {
+        return String.init(data: Data.init(base64Encoded: str.replacingOccurrences(of: "-", with: "+").replacingOccurrences(of: "_", with: "/"))!, encoding: String.Encoding.ascii)!
     }
 }

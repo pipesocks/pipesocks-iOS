@@ -27,7 +27,7 @@ class EncodeViewController: UIViewController {
         super.viewWillAppear(animated)
         if EncodeViewController.url != nil {
             let filter=CIFilter.init(name: "CIQRCodeGenerator", withInputParameters: [
-                "inputMessage":NSData.init(data: EncodeViewController.url!.data(using: String.Encoding.isoLatin1)!),
+                "inputMessage":NSData.init(data: EncodeViewController.url!.data(using: String.Encoding.ascii)!),
                 "inputCorrectionLevel":"L"
                 ])
             let image:CIImage=filter!.outputImage!
