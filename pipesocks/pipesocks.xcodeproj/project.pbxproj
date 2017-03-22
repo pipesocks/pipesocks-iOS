@@ -26,6 +26,11 @@
 		75A6FC241E80BBFD00DB9B18 /* DecodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A6FC231E80BBFD00DB9B18 /* DecodeViewController.swift */; };
 		75B0E84D1E42DAB80045AE7F /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */; };
 		75B0E8511E42DAB80045AE7F /* Tap.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75B0E8481E42DAB80045AE7F /* Tap.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		75DE13CF1E8235CF005F9D2E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75DE13CE1E8235CF005F9D2E /* NotificationCenter.framework */; };
+		75DE13D21E8235CF005F9D2E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE13D11E8235CF005F9D2E /* TodayViewController.swift */; };
+		75DE13D51E8235CF005F9D2E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75DE13D31E8235CF005F9D2E /* MainInterface.storyboard */; };
+		75DE13D91E8235CF005F9D2E /* Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75DE13CD1E8235CF005F9D2E /* Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		75DE13DD1E823D75005F9D2E /* VPNCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550ECB31E41CEE300131617 /* VPNCore.swift */; };
 		75FB850C1E6A40A3009207F5 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FB850B1E6A40A3009207F5 /* Version.swift */; };
 		75FB850D1E6A41A1009207F5 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FB850B1E6A40A3009207F5 /* Version.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +43,13 @@
 			remoteGlobalIDString = 75B0E8471E42DAB80045AE7F;
 			remoteInfo = Tap;
 		};
+		75DE13D71E8235CF005F9D2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 756C10151E40C3F500C113B1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75DE13CC1E8235CF005F9D2E;
+			remoteInfo = Widget;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +59,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				75DE13D91E8235CF005F9D2E /* Widget.appex in Embed App Extensions */,
 				75B0E8511E42DAB80045AE7F /* Tap.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -78,6 +91,11 @@
 		75B0E84B1E42DAB80045AE7F /* Tap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tap.entitlements; sourceTree = "<group>"; };
 		75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
 		75B0E84E1E42DAB80045AE7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75DE13CD1E8235CF005F9D2E /* Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		75DE13CE1E8235CF005F9D2E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		75DE13D11E8235CF005F9D2E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		75DE13D41E8235CF005F9D2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		75DE13D61E8235CF005F9D2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75FB850B1E6A40A3009207F5 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +115,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		75DE13CA1E8235CF005F9D2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75DE13CF1E8235CF005F9D2E /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -104,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				750A6ACA1E62853400F06D21 /* NEKit.framework */,
+				75DE13CE1E8235CF005F9D2E /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -113,6 +140,7 @@
 			children = (
 				756C101F1E40C3F500C113B1 /* pipesocks */,
 				75B0E8491E42DAB80045AE7F /* Tap */,
+				75DE13D01E8235CF005F9D2E /* Widget */,
 				756C101E1E40C3F500C113B1 /* Products */,
 				750A6AC91E62853400F06D21 /* Frameworks */,
 			);
@@ -123,6 +151,7 @@
 			children = (
 				756C101D1E40C3F500C113B1 /* pipesocks.app */,
 				75B0E8481E42DAB80045AE7F /* Tap.appex */,
+				75DE13CD1E8235CF005F9D2E /* Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,6 +199,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		75DE13D01E8235CF005F9D2E /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				75DE13D11E8235CF005F9D2E /* TodayViewController.swift */,
+				75DE13D31E8235CF005F9D2E /* MainInterface.storyboard */,
+				75DE13D61E8235CF005F9D2E /* Info.plist */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -187,6 +226,7 @@
 			);
 			dependencies = (
 				75B0E8501E42DAB80045AE7F /* PBXTargetDependency */,
+				75DE13D81E8235CF005F9D2E /* PBXTargetDependency */,
 			);
 			name = pipesocks;
 			productName = pipesocks;
@@ -208,6 +248,23 @@
 			name = Tap;
 			productName = Tap;
 			productReference = 75B0E8481E42DAB80045AE7F /* Tap.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		75DE13CC1E8235CF005F9D2E /* Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75DE13DC1E8235CF005F9D2E /* Build configuration list for PBXNativeTarget "Widget" */;
+			buildPhases = (
+				75DE13C91E8235CF005F9D2E /* Sources */,
+				75DE13CA1E8235CF005F9D2E /* Frameworks */,
+				75DE13CB1E8235CF005F9D2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Widget;
+			productName = Widget;
+			productReference = 75DE13CD1E8235CF005F9D2E /* Widget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -235,6 +292,11 @@
 							};
 						};
 					};
+					75DE13CC1E8235CF005F9D2E = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 3P29JY455N;
+						ProvisioningStyle = Manual;
+					};
 				};
 			};
 			buildConfigurationList = 756C10181E40C3F500C113B1 /* Build configuration list for PBXProject "pipesocks" */;
@@ -252,6 +314,7 @@
 			targets = (
 				756C101C1E40C3F500C113B1 /* pipesocks */,
 				75B0E8471E42DAB80045AE7F /* Tap */,
+				75DE13CC1E8235CF005F9D2E /* Widget */,
 			);
 		};
 /* End PBXProject section */
@@ -275,6 +338,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75DE13CB1E8235CF005F9D2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75DE13D51E8235CF005F9D2E /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +404,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		75DE13C91E8235CF005F9D2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75DE13DD1E823D75005F9D2E /* VPNCore.swift in Sources */,
+				75DE13D21E8235CF005F9D2E /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -340,6 +420,11 @@
 			isa = PBXTargetDependency;
 			target = 75B0E8471E42DAB80045AE7F /* Tap */;
 			targetProxy = 75B0E84F1E42DAB80045AE7F /* PBXContainerItemProxy */;
+		};
+		75DE13D81E8235CF005F9D2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 75DE13CC1E8235CF005F9D2E /* Widget */;
+			targetProxy = 75DE13D71E8235CF005F9D2E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -358,6 +443,14 @@
 				756C102A1E40C3F500C113B1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		75DE13D31E8235CF005F9D2E /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				75DE13D41E8235CF005F9D2E /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -544,6 +637,40 @@
 			};
 			name = Release;
 		};
+		75DE13DA1E8235CF005F9D2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3P29JY455N;
+				INFOPLIST_FILE = Widget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tk.yvbbrjdr.pipesocks.Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b67dc052-1b26-4447-8fc4-2b466f4360b8";
+				PROVISIONING_PROFILE_SPECIFIER = "pipesocks Widget";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		75DE13DB1E8235CF005F9D2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3P29JY455N;
+				INFOPLIST_FILE = Widget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tk.yvbbrjdr.pipesocks.Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b67dc052-1b26-4447-8fc4-2b466f4360b8";
+				PROVISIONING_PROFILE_SPECIFIER = "pipesocks Widget";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -573,6 +700,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		75DE13DC1E8235CF005F9D2E /* Build configuration list for PBXNativeTarget "Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75DE13DA1E8235CF005F9D2E /* Debug */,
+				75DE13DB1E8235CF005F9D2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

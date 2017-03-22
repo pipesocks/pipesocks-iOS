@@ -39,7 +39,7 @@ class EncodeViewController: UIViewController {
 
     @IBAction func copyLinkClicked() {
         UIPasteboard.general.string=EncodeViewController.url
-        let urlCopied=UIAlertController.init(title: "Success", message: "URL is copied!", preferredStyle: UIAlertControllerStyle.alert)
+        let urlCopied=UIAlertController.init(title: "Success", message: "URL is copied!\n\(EncodeViewController.url!)", preferredStyle: UIAlertControllerStyle.alert)
         let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
         urlCopied.addAction(OKButton)
         present(urlCopied, animated: true, completion: nil)
