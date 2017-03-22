@@ -29,8 +29,8 @@ class SettingsViewController: UITableViewController {
     var core:VPNCore?
     static var url:String?
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         remotePort.text="7473"
         autoMode.isOn=true
         enableIPv6.isOn=false
@@ -44,6 +44,10 @@ class SettingsViewController: UITableViewController {
                 self.enableIPv6.isOn=config["enableIPv6"] as! Bool
             }
         })
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if var url=SettingsViewController.url {
             var ok:Bool=false
             if String.init(url.characters.prefix(12))=="pipesocks://" {
@@ -122,6 +126,11 @@ class SettingsViewController: UITableViewController {
     }
 
     func urlSafeBase64Decode(str:String) -> String {
-        return String.init(data: Data.init(base64Encoded: str.replacingOccurrences(of: "-", with: "+").replacingOccurrences(of: "_", with: "/"))!, encoding: String.Encoding.ascii)!
+        let data:Data?=Data.init(base64Encoded: str.replacingOccurrences(of: "-", with: "+").replacingOccurrences(of: "_", with: "/"))
+        if data != nil {
+            return String.init(data: data!, encoding: String.Encoding.ascii)!
+        } else {
+            return String.init()
+        }
     }
 }
