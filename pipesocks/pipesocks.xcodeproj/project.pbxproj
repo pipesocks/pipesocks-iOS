@@ -708,6 +708,7 @@
 				75DE13DB1E8235CF005F9D2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
