@@ -31,7 +31,7 @@ class EncodeViewController: UIViewController {
                 "inputCorrectionLevel":"L"
                 ])
             let image:CIImage=filter!.outputImage!
-            let scale:CGFloat=min(QRCode.bounds.width, QRCode.bounds.height)/UIImage.init(ciImage: image).size.width
+            var scale:CGFloat=min(QRCode.bounds.width, QRCode.bounds.height)/UIImage.init(ciImage: image).size.width
             scale=CGFloat.init(ceilf(Float.init(scale)))
             let transform:CGAffineTransform=CGAffineTransform.init(scaleX: scale, y: scale)
             QRCode.image=UIImage.init(ciImage: image.applying(transform))
