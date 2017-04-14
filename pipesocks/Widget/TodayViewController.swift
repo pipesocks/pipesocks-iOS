@@ -41,12 +41,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             let config=self.core!.getConfig()
             switch self.core!.status() {
                 case .connected, .connecting, .reasserting:
-                    self.label.text="Remote Host: \(config!["remoteHost"] as! String)\nRemote Port: \(config!["remotePort"] as! UInt16)\nPassword: \(config!["password"] as! String)"
+                    self.label.text="\(config!["remoteHost"] as! String):\(config!["remotePort"] as! UInt16)"
                     self.start.isOn=true
                     self.start.isEnabled=true
                     break
                 case .disconnected, .disconnecting:
-                    self.label.text="Remote Host: \(config!["remoteHost"] as! String)\nRemote Port: \(config!["remotePort"] as! UInt16)\nPassword: \(config!["password"] as! String)"
+                    self.label.text="\(config!["remoteHost"] as! String):\(config!["remotePort"] as! UInt16)"
                     self.start.isOn=false
                     if self.core!.manager!.isEnabled {
                         self.start.isEnabled=true
