@@ -29,8 +29,8 @@ class SettingsViewController: UITableViewController {
     var core:VPNCore?
     static var url:String?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         remotePort.text="7473"
         autoMode.isOn=true
         enableIPv6.isOn=false
@@ -43,31 +43,27 @@ class SettingsViewController: UITableViewController {
                 self.autoMode.isOn=config["autoMode"] as! Bool
                 self.enableIPv6.isOn=config["enableIPv6"] as! Bool
             }
-        })
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if var url=SettingsViewController.url {
-            var ok:Bool=false
-            if String.init(url.characters.prefix(12))=="pipesocks://" {
-                url=urlSafeBase64Decode(str: String.init(url.characters.suffix(url.characters.count-12)))
-                let params=url.characters.split(separator: Character.init("|"), maxSplits: 2, omittingEmptySubsequences: false)
-                if params.count==3 {
-                    remoteHost.text=String.init(params[0])
-                    remotePort.text=String.init(params[1])
-                    password.text=String.init(params[2])
-                    ok=true
+            if var url=SettingsViewController.url {
+                var ok:Bool=false
+                if String.init(url.characters.prefix(12))=="pipesocks://" {
+                    url=self.urlSafeBase64Decode(str: String.init(url.characters.suffix(url.characters.count-12)))
+                    let params=url.characters.split(separator: Character.init("|"), maxSplits: 2, omittingEmptySubsequences: false)
+                    if params.count==3 {
+                        self.remoteHost.text=String.init(params[0])
+                        self.remotePort.text=String.init(params[1])
+                        self.password.text=String.init(params[2])
+                        ok=true
+                    }
                 }
+                if !ok {
+                    let notValid=UIAlertController.init(title: "Error", message: "The URL or QR Code is invalid!", preferredStyle: UIAlertControllerStyle.alert)
+                    let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+                    notValid.addAction(OKButton)
+                    self.present(notValid, animated: true, completion: nil)
+                }
+                SettingsViewController.url=nil
             }
-            if !ok {
-                let notValid=UIAlertController.init(title: "Error", message: "The URL or QR Code is invalid!", preferredStyle: UIAlertControllerStyle.alert)
-                let OKButton=UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
-                notValid.addAction(OKButton)
-                present(notValid, animated: true, completion: nil)
-            }
-            SettingsViewController.url=nil
-        }
+        })
     }
 
     @IBAction func remoteHostDone() {
@@ -104,6 +100,7 @@ class SettingsViewController: UITableViewController {
             "autoMode":autoMode.isOn,
             "enableIPv6":enableIPv6.isOn
         ]
+        core?.stop()
         core?.setConfig(config: config, completionHandler: { (success) in
             if success {
                 self.navigationController?.popViewController(animated: true)

@@ -52,22 +52,18 @@ class MainViewController: UIViewController {
             case .connected:
                 start.setBackgroundImage(#imageLiteral(resourceName: "origin.png"), for: UIControlState.normal)
                 start.isEnabled=true
-                settings.isEnabled=false
                 break
             case .connecting, .reasserting:
                 start.setBackgroundImage(#imageLiteral(resourceName: "origin.png"), for: UIControlState.normal)
                 start.isEnabled=false
-                settings.isEnabled=false
                 break
             case .invalid, .disconnected:
                 start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
                 start.isEnabled=true
-                settings.isEnabled=true
                 break
             case .disconnecting:
                 start.setBackgroundImage(#imageLiteral(resourceName: "inactive.png"), for: UIControlState.normal)
                 start.isEnabled=false
-                settings.isEnabled=false
                 break
         }
     }
