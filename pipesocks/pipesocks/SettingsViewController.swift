@@ -118,6 +118,10 @@ class SettingsViewController: UITableViewController {
         performSegue(withIdentifier: "ShowQRCode", sender: self)
     }
 
+    @IBAction func cancelClicked() {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     func urlSafeBase64Encode(str:String) -> String {
         return str.data(using: String.Encoding.ascii)!.base64EncodedString().replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "+", with: "-")
     }
