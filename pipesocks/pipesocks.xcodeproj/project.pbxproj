@@ -26,6 +26,9 @@
 		75A6FC241E80BBFD00DB9B18 /* DecodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A6FC231E80BBFD00DB9B18 /* DecodeViewController.swift */; };
 		75B0E84D1E42DAB80045AE7F /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */; };
 		75B0E8511E42DAB80045AE7F /* Tap.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75B0E8481E42DAB80045AE7F /* Tap.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		75D2DB001F020AC2008F45F0 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D2DAFF1F020AC2008F45F0 /* NetworkExtension.framework */; };
+		75D2DB021F020AD4008F45F0 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D2DAFF1F020AC2008F45F0 /* NetworkExtension.framework */; };
+		75D2DB031F020AD8008F45F0 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D2DAFF1F020AC2008F45F0 /* NetworkExtension.framework */; };
 		75DE13CF1E8235CF005F9D2E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75DE13CE1E8235CF005F9D2E /* NotificationCenter.framework */; };
 		75DE13D21E8235CF005F9D2E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE13D11E8235CF005F9D2E /* TodayViewController.swift */; };
 		75DE13D51E8235CF005F9D2E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75DE13D31E8235CF005F9D2E /* MainInterface.storyboard */; };
@@ -91,6 +94,9 @@
 		75B0E84B1E42DAB80045AE7F /* Tap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tap.entitlements; sourceTree = "<group>"; };
 		75B0E84C1E42DAB80045AE7F /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
 		75B0E84E1E42DAB80045AE7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75D2DAFF1F020AC2008F45F0 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		75D2DB011F020AC2008F45F0 /* Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widget.entitlements; sourceTree = "<group>"; };
+		75D2DB041F020AD8008F45F0 /* pipesocks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pipesocks.entitlements; sourceTree = "<group>"; };
 		75DE13CD1E8235CF005F9D2E /* Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DE13CE1E8235CF005F9D2E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		75DE13D11E8235CF005F9D2E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +111,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75A475891E6962FA00769779 /* NEKit.framework in Frameworks */,
+				75D2DB031F020AD8008F45F0 /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75D2DB021F020AD4008F45F0 /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75DE13CF1E8235CF005F9D2E /* NotificationCenter.framework in Frameworks */,
+				75D2DB001F020AC2008F45F0 /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +138,7 @@
 		750A6AC91E62853400F06D21 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75D2DAFF1F020AC2008F45F0 /* NetworkExtension.framework */,
 				750A6ACA1E62853400F06D21 /* NEKit.framework */,
 				75DE13CE1E8235CF005F9D2E /* NotificationCenter.framework */,
 			);
@@ -175,6 +185,7 @@
 				7586E0411E6FE09500303C26 /* inactive.png */,
 				75194E831E7D78BF000DB6C5 /* Encode.png */,
 				75194E841E7D78BF000DB6C5 /* Decode.png */,
+				75D2DB041F020AD8008F45F0 /* pipesocks.entitlements */,
 			);
 			path = pipesocks;
 			sourceTree = "<group>";
@@ -205,6 +216,7 @@
 				75DE13D11E8235CF005F9D2E /* TodayViewController.swift */,
 				75DE13D31E8235CF005F9D2E /* MainInterface.storyboard */,
 				75DE13D61E8235CF005F9D2E /* Info.plist */,
+				75D2DB011F020AC2008F45F0 /* Widget.entitlements */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -281,6 +293,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3P29JY455N;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.NetworkExtensions = {
+								enabled = 1;
+							};
+						};
 					};
 					75B0E8471E42DAB80045AE7F = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -290,12 +307,20 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
 							};
+							com.apple.NetworkExtensions = {
+								enabled = 1;
+							};
 						};
 					};
 					75DE13CC1E8235CF005F9D2E = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 3P29JY455N;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.NetworkExtensions = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -554,6 +579,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = pipesocks/pipesocks.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3P29JY455N;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -577,6 +603,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = pipesocks/pipesocks.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3P29JY455N;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -598,6 +625,7 @@
 		75B0E8521E42DAB80045AE7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Tap/Tap.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3P29JY455N;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -619,6 +647,7 @@
 		75B0E8531E42DAB80045AE7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Tap/Tap.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3P29JY455N;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -640,6 +669,7 @@
 		75DE13DA1E8235CF005F9D2E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Widget/Widget.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3P29JY455N;
 				INFOPLIST_FILE = Widget/Info.plist;
@@ -657,6 +687,7 @@
 		75DE13DB1E8235CF005F9D2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Widget/Widget.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3P29JY455N;
 				INFOPLIST_FILE = Widget/Info.plist;
