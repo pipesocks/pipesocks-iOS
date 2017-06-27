@@ -284,6 +284,7 @@
 					};
 					75B0E8471E42DAB80045AE7F = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 3P29JY455N;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -293,6 +294,7 @@
 					};
 					75DE13CC1E8235CF005F9D2E = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 3P29JY455N;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -563,8 +565,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tk.yvbbrjdr.pipesocks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d50909c9-1cc1-4b31-918d-db487d85e38e";
-				PROVISIONING_PROFILE_SPECIFIER = pipesocks;
+				PROVISIONING_PROFILE = "e595d317-3c76-48b8-bd0f-a7f11a289c3b";
+				PROVISIONING_PROFILE_SPECIFIER = "pipesocks Development";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -576,7 +578,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3P29JY455N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -586,8 +588,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tk.yvbbrjdr.pipesocks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e595d317-3c76-48b8-bd0f-a7f11a289c3b";
+				PROVISIONING_PROFILE_SPECIFIER = "pipesocks Development";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -597,7 +599,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3P29JY455N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -607,8 +609,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tk.yvbbrjdr.pipesocks.Tap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "421b9b21-a21e-4e96-9be7-18fb32e88b74";
+				PROVISIONING_PROFILE_SPECIFIER = "pipesocks Tap Development";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -618,7 +620,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3P29JY455N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -628,8 +630,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tk.yvbbrjdr.pipesocks.Tap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "421b9b21-a21e-4e96-9be7-18fb32e88b74";
+				PROVISIONING_PROFILE_SPECIFIER = "pipesocks Tap Development";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -639,14 +641,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3P29JY455N;
 				INFOPLIST_FILE = Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tk.yvbbrjdr.pipesocks.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "5e94f90d-3a76-4f08-819c-035bbb5d0ff1";
+				PROVISIONING_PROFILE_SPECIFIER = "pipesocks Widget Development";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -656,14 +658,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3P29JY455N;
 				INFOPLIST_FILE = Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tk.yvbbrjdr.pipesocks.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "5e94f90d-3a76-4f08-819c-035bbb5d0ff1";
+				PROVISIONING_PROFILE_SPECIFIER = "pipesocks Widget Development";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
