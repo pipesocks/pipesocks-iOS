@@ -103,6 +103,9 @@ class SettingsViewController: UITableViewController {
         core?.stop()
         core?.setConfig(config: config, completionHandler: { (success) in
             if success {
+                URLSession.init(configuration: .default).dataTask(with: URL.init(string: "https://www.baidu.com/")!, completionHandler: { (data, urlResponse, error) in
+                    return
+                }).resume()
                 self.navigationController?.popViewController(animated: true)
             } else {
                 let notValid=UIAlertController.init(title: "Error", message: "Permission denied!\nPlease allow the VPN configuration!", preferredStyle: UIAlertControllerStyle.alert)
